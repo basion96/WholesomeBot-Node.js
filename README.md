@@ -1,2 +1,2 @@
 # WholesomeBot
-A discord bot full of wholesomeness
+WholesomeBot is a discord bot designed to spread happiness and wholesomeness
