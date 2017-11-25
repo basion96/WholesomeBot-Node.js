@@ -163,7 +163,7 @@ function fillArrays(){
 	});
 	fs.readdir("pictures", function(err, data) {
 		for (var i=0; i<data.length; i++) {
-			if(data.substring(0,1)!='@'){
+			if(data[i].substring(0,1)!='@'){
 				wholesomePics.push(data[i]);
 			}
 		}
