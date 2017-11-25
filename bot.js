@@ -5,7 +5,6 @@ var wholesomeMessages = new Array();
 var cheerUpMessages = new Array();
 var howAreYouReplies = new Array();
 var wholesomePics = new Array();
-const PREFIX = '!';
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -27,7 +26,7 @@ bot.on('ready', function (evt) {
 
 bot.on('message', function (user, userID, channelID, message, evt) {
 	console.log(user + ": " + message);
-    if (message.substring(0, 1) == PREFIX) {
+    if (message.substring(0, 1) == config.prefix) {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
        
@@ -100,9 +99,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	 }
 });
 
-function sendWholesomeMsg(channel){
+function sendWholesomeMsg(channelID){
 	bot.sendMessage({
-		to: channel,
+		to: channelID,
 		message: wholesomeMessages[getRandom(wholesomeMessages)]
 	});
 }
@@ -115,9 +114,9 @@ function getHowAreYouMsg(){
 	return howAreYouReplies[getRandom(howAreYouReplies)];
 }
 
-function customMsg(channel, msg){
+function customMsg(channelID, msg){
 	bot.sendMessage({
-		to: channel,
+		to: channelID,
 		message: msg
 	});
 }
@@ -138,7 +137,7 @@ setInterval(function(){
 	console.log(date.getHours());
 	if(date.getHours()==2){
 		console.log('Sending daily wholesome message...');
-		sendWholesomeMsg('370388716113625108');
+		sendWholesomeMsg(config.publicChannel);
 	}
 }, 3600000);
 
