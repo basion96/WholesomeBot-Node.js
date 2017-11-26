@@ -1,10 +1,12 @@
 var Discord = require('discord.io');
 var logger = require('winston');
 var config = require('./config.json');
+
 var wholesomeMessages = new Array();
 var cheerUpMessages = new Array();
 var howAreYouReplies = new Array();
 var wholesomePics = new Array();
+var howDoYouWorkReplies = new Array();
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -12,6 +14,7 @@ logger.add(logger.transports.Console, {
     colorize: true
 });
 logger.level = 'debug';
+
 // Initialize Discord Bot
 var bot = new Discord.Client({
    token: config.token,
@@ -24,6 +27,12 @@ bot.on('ready', function (evt) {
 	fillArrays();
 });
 
+// Automatically reconnect if the bot disconnects due to inactivity
+bot.on('disconnect', function(erMsg, code) {
+    console.log('Bot disconnected: ', code, 'Reason:', erMsg);
+    bot.connect();
+});
+
 bot.on('message', function (user, userID, channelID, message, evt) {
 	console.log(user + ": " + message);
     if (message.substring(0, 1) == config.prefix) {
@@ -33,23 +42,31 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         args = args.splice(1);
         switch(cmd) {
             case 'wholesome':
-                sendWholesomeMsg(channelID);
+            bot.sendMessage({
+				to: channelID,
+				message: wholesomeMessages[getRandom(wholesomeMessages.length)]
+			});
             break;
 			case "byebye":
 				bot.disconnect();
 				process.exit(0);
 			break;
 			case "cheerMeUp":
-				bot.sendMessage({
+			bot.sendMessage({
 					to: channelID,
-					message: getCheerUpMsg()
+					message: cheerUpMessages[getRandom(cheerUpMessages.length)]
 				});
 			break;
 			case "updateLists":
+				console.log("Updating arrays...");
 				fillArrays();
+				console.log("Arrays updated!");
 			break;
 			case 'wholesomeImg':
-				sendWholesomePic(channelID);
+			bot.uploadFile({
+				to: channelID,
+				file: "pictures/"+wholesomePics[getRandom(wholesomePics.length)]
+			});
 			break;
          }
      }
@@ -69,7 +86,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 else if(message.toLowerCase().indexOf("how are you wholesomebot")!=-1 || message.toLowerCase().indexOf("how're you wholesomebot")!=-1 || message.toLowerCase().indexOf("how you doing wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you today wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you doing today wholesomebot")!=-1){
 			 bot.sendMessage({
 					to: channelID,
-					message: getHowAreYouMsg()
+					message: howAreYouReplies[getRandom(howAreYouReplies)]
 				});
 		 }
 		 else if(message.toLowerCase().indexOf("fuck")!=-1 || message.toLowerCase().indexOf("cunt")!=-1){
@@ -91,28 +108,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 });
 		 }
 		 else if(message.toLowerCase()=="how do you work <@380542695556251650>?" || message.toLowerCase()=="how do you work <@380542695556251650>"){
-			 bot.sendMessage({
-				 to: channelID,
-				 message: "Well, when you send a message i check if it has anything to do with me. If it does, my insides go \"BEEP BOOP BEEP\" and then i poop out wholesomeness and love :blush:"
-			 });
+			bot.sendMessage({
+				to:channelID,
+				message: howDoYouWorkReplies[getRandom(howDoYouWorkReplies.length)]
+			});
 		 }
 	 }
 });
-
-function sendWholesomeMsg(channelID){
-	bot.sendMessage({
-		to: channelID,
-		message: wholesomeMessages[getRandom(wholesomeMessages)]
-	});
-}
-
-function getCheerUpMsg(){
-	return cheerUpMessages[getRandom(cheerUpMessages)];
-}
-
-function getHowAreYouMsg(){
-	return howAreYouReplies[getRandom(howAreYouReplies)];
-}
 
 function customMsg(channelID, msg){
 	bot.sendMessage({
@@ -121,23 +123,18 @@ function customMsg(channelID, msg){
 	});
 }
 
-function getRandom(array){
-	return Math.floor(Math.random()*array.length);
-}
-
-function sendWholesomePic(channelID){
-	bot.uploadFile({
-		to: channelID,
-		file: "pictures/"+wholesomePics[getRandom(wholesomePics)]
-	});
+function getRandom(arrayLength){
+	return Math.floor(Math.random()*arrayLength);
 }
 
 setInterval(function(){
 	var date = new Date();
-	console.log(date.getHours());
 	if(date.getHours()==2){
 		console.log('Sending daily wholesome message...');
-		sendWholesomeMsg(config.publicChannel);
+		bot.sendMessage({
+			to: config.publicChannel,
+			message: wholesomeMessages[getRandom(wholesomeMessages.length)]
+		});
 	}
 }, 3600000);
 
@@ -149,23 +146,36 @@ function fillArrays(){
 		}
 		wholesomeMessages = data.toString().split("\n");
 	});
+	
 	fs.readFile('MessageFiles/cheerUpMessages.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
 		}
 		cheerUpMessages = data.toString().split("\n");
 	});
+	
 	fs.readFile('MessageFiles/howAreYouReplies.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
 		}
 		howAreYouReplies = data.toString().split("\n");
 	});
+	
 	fs.readdir("pictures", function(err, data) {
+		if(err){
+			return console.log(err);
+		}
 		for (var i=0; i<data.length; i++) {
-			if(data.substring(0,1)!='@'){
+			if(data[i].substring(0,1)!='@'){
 				wholesomePics.push(data[i]);
 			}
 		}
+	});
+	
+	fs.readFile("MessageFiles/howDoYouWorkReplies", function(err, data) {
+		if(err){
+			return console.log(err);
+		}
+		howDoYouWorkReplies = data.toString().split("\n");
 	});
 }
