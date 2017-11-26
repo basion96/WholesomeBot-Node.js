@@ -173,7 +173,7 @@ function fillArrays(){
 		}
 	});
 	
-	fs.readFile("MessageFiles/howDoYouWorkReplies", function(err, data) {
+	fs.readFile("MessageFiles/howDoYouWorkReplies.txt", function(err, data) {
 		if(err){
 			return console.log(err);
 		}
