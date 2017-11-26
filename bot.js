@@ -21,6 +21,7 @@ var bot = new Discord.Client({
    autorun: true,
    autoReconnect:true
 });
+
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: '+ bot.username + ' - (' + bot.id + ')');
@@ -171,7 +172,6 @@ function fillArrays(){
 			}
 		}
 	});
-<<<<<<< HEAD
 	
 	fs.readFile("MessageFiles/howDoYouWorkReplies", function(err, data) {
 		if(err){
@@ -180,6 +180,3 @@ function fillArrays(){
 		howDoYouWorkReplies = data.toString().split("\n");
 	});
 }
-=======
-}
->>>>>>> 2149e5b414abab16e18aeb9a480e0ee2e57cb352
