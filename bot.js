@@ -69,6 +69,19 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				file: "pictures/"+wholesomePics[getRandom(wholesomePics.length)]
 			});
 			break;
+			case 'info':
+				bot.sendMessage({
+					to: channelID,
+					embed: {
+						color: 3447003,
+						title: "WholesomeBot",
+						thumbnail: {
+							url: "http://twinkletits.duckdns.org/discordPics/wholesomeBotPic.png"
+						},
+						description: 'WholesomeBot is a Happy little bot whos goal is to make your day just that little bit better. For information on WholesomeBot, such as commands, visit [](https://github.com/basion96/WholesomeBot)',
+					}
+				});
+			break;
          }
      }
 	 else{
