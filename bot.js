@@ -85,19 +85,19 @@ bot.on('message', function (user, userID, channelID, message, evt) {
          }
      }
 	 else{
-		 if(message.toLowerCase()=='i love you wholesomebot'){
+		 if(message.toLowerCase()=='i love you wholesomebot' || message.toLowerCase()=='i love you <@380542695556251650>'){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'i love you too ' + '<@'+userID+'>'
 				});
 		 }
-		 else if(message.toLowerCase().indexOf("thank you wholesomebot")!=-1 || message.toLowerCase().indexOf("thanks wholesomebot")!=-1){
+		 else if(message.toLowerCase().indexOf("thank you wholesomebot")!=-1 || message.toLowerCase().indexOf("thanks wholesomebot")!=-1 || message.toLowerCase().indexOf("thank you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thanks <@380542695556251650>")!=-1){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'No problem :blush:'
 				});
 		 }
-		 else if(message.toLowerCase().indexOf("how are you wholesomebot")!=-1 || message.toLowerCase().indexOf("how're you wholesomebot")!=-1 || message.toLowerCase().indexOf("how you doing wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you today wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you doing today wholesomebot")!=-1){
+		 else if(message.toLowerCase().indexOf("how are you wholesomebot")!=-1 || message.toLowerCase().indexOf("how're you wholesomebot")!=-1 || message.toLowerCase().indexOf("how you doing wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you today wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you doing today wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how're you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how you doing <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how are you today <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how are you doing today <@380542695556251650>")!=-1){
 			 bot.sendMessage({
 					to: channelID,
 					message: howAreYouReplies[getRandom(howAreYouReplies)]
@@ -109,7 +109,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 message: "Please watch your language :upside_down:"
 			 });
 		 }
-		 else if(message.toLowerCase()=="hey <@380542695556251650>" || message.toLowerCase()=="hi <@380542695556251650>" || message.toLowerCase()=="hello <@380542695556251650>"){
+		 else if(message.toLowerCase()=="hey <@380542695556251650>" || message.toLowerCase()=="hi <@380542695556251650>" || message.toLowerCase()=="hello <@380542695556251650>" || message.toLowerCase()=="hey wholesomebot" || message.toLowerCase()=="hi wholesomebot" || message.toLowerCase()=="hello wholesomebot"){
 			 bot.sendMessage({
 				 to: channelID,
 				 message: "Hey " + user
@@ -121,7 +121,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 message: "AHH! Spooked again... :sweat_smile: "
 			 });
 		 }
-		 else if(message.toLowerCase()=="how do you work <@380542695556251650>?" || message.toLowerCase()=="how do you work <@380542695556251650>"){
+		 else if(message.toLowerCase().indexOf("how do you work <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how do you work wholesomebot")!=-1){
 			bot.sendMessage({
 				to:channelID,
 				message: howDoYouWorkReplies[getRandom(howDoYouWorkReplies.length)]
