@@ -19,6 +19,9 @@ WholesomeBot will also respond to some messages that are sent to a channel. Thes
 - SPOOK!
 - how do you work wholesomebot
 
+## Future plans
+- Joining voice channels and playing music
+
 ## Installing the bot
 ### Linux
 To install the bot on linux, simply type `git clone https://github.com/basion96/WholesomeBot.git`
