@@ -20,3 +20,6 @@ WholesomeBot will also respond to some messages that are sent to a channel. Thes
 - how do you work wholesomebot
 
 ## Installing the bot
+### Linux
+To install the bot on linux, simply type `git clone https://github.com/basion96/WholesomeBot.git`
+To update the bot, type `git pull` in the same directory as the bot.
