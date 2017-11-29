@@ -1,5 +1,5 @@
 # WholesomeBot
-WholesomeBot is a discord bot designed to spread happiness and wholesomeness!
+WholesomeBot is a discord bot designed to spread happiness and wholesomeness.
 
 ## Commands
 The list of commands for WholesomeBot is slowly expanding, here are the current ones:
@@ -22,7 +22,14 @@ WholesomeBot will also respond to some messages that are sent to a channel. Thes
 ## Future plans
 - Joining voice channels and playing music
 
-## Installing the bot
+## Setting up the bot
+First of all make sure you have made a bot account, and that ou have added it to your server.
+
+To do this, go to https://discordapp.com/developers/applications/me to create a new app. click on "New App" and fill ou the details. Make sure that you click "Create a Bot User" and then "Yes do it" to make the bot and get the bots unique token.
+Once you have done that, continue on with installing the bot on your device.
+
 ### Linux
 To install the bot on linux, simply type `git clone https://github.com/basion96/WholesomeBot.git`
 To update the bot, type `git pull` in the same directory as the bot.
+
+### Windows
