@@ -1,11 +1,10 @@
 {
   "name": "WholesomeBot",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "Your happy wholesome bot",
   "main": "bot.js",
   "author": "Jason Horsnell",
   "dependencies": {
-    "discord.io": "^2.5.3",
-    "winston": "^2.4.0"
+	"discord.io": "^2.5.3"
   }
 }
