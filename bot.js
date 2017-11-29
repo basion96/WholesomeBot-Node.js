@@ -1,5 +1,4 @@
 var Discord = require('discord.io');
-var logger = require('winston');
 var config = require('./config.json');
 
 var wholesomeMessages = new Array();
@@ -7,13 +6,6 @@ var cheerUpMessages = new Array();
 var howAreYouReplies = new Array();
 var wholesomePics = new Array();
 var howDoYouWorkReplies = new Array();
-
-// Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-    colorize: true
-});
-logger.level = 'debug';
 
 // Initialize Discord Bot
 var bot = new Discord.Client({
@@ -23,8 +15,8 @@ var bot = new Discord.Client({
 });
 
 bot.on('ready', function (evt) {
-    logger.info('Connected');
-    logger.info('Logged in as: '+ bot.username + ' - (' + bot.id + ')');
+    console.log('Connected');
+    console.log('Logged in as: '+ bot.username + ' - (' + bot.id + ')');
 	fillArrays();
 });
 
@@ -82,6 +74,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}
 				});
 			break;
+			case 'choose':
+				
+			break;
          }
      }
 	 else{
@@ -91,7 +86,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					message: 'i love you too ' + '<@'+userID+'>'
 				});
 		 }
-		 else if(message.toLowerCase().indexOf("thank you wholesomebot")!=-1 || message.toLowerCase().indexOf("thanks wholesomebot")!=-1 || message.toLowerCase().indexOf("thank you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thanks <@380542695556251650>")!=-1){
+		 else if(message.toLowerCase().indexOf("thank you wholesomebot")!=-1 || message.toLowerCase().indexOf("thankyou wholesomebot")!=-1 || message.toLowerCase().indexOf("thanks wholesomebot")!=-1 || message.toLowerCase().indexOf("thank you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thanks <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thankyou <@380542695556251650>")!=-1){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'No problem :blush:'
@@ -113,6 +108,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 bot.sendMessage({
 				 to: channelID,
 				 message: "Hey " + user
+			 });
+		 }
+		 else if(message.toLowerCase()=="ty <@380542695556251650>" || message.toLowerCase()=="ty wholesomebot"){
+			 bot.sendMessage({
+				 to: channelID,
+				 message: 'np bby :kissing_heart:'
 			 });
 		 }
 		 else if(message=="SPOOK!"){
@@ -154,28 +155,28 @@ setInterval(function(){
 
 function fillArrays(){
 	fs = require('fs');
-	fs.readFile('MessageFiles/wholesomeReminders.txt', 'utf8', function(err,data){
+	fs.readFile('./MessageFiles/wholesomeReminders.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
 		}
 		wholesomeMessages = data.toString().split("\n");
 	});
 	
-	fs.readFile('MessageFiles/cheerUpMessages.txt', 'utf8', function(err,data){
+	fs.readFile('./MessageFiles/cheerUpMessages.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
 		}
 		cheerUpMessages = data.toString().split("\n");
 	});
 	
-	fs.readFile('MessageFiles/howAreYouReplies.txt', 'utf8', function(err,data){
+	fs.readFile('./MessageFiles/howAreYouReplies.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
 		}
 		howAreYouReplies = data.toString().split("\n");
 	});
 	
-	fs.readdir("pictures", function(err, data) {
+	fs.readdir("./pictures", function(err, data) {
 		if(err){
 			return console.log(err);
 		}
@@ -186,7 +187,7 @@ function fillArrays(){
 		}
 	});
 	
-	fs.readFile("MessageFiles/howDoYouWorkReplies.txt", function(err, data) {
+	fs.readFile("./MessageFiles/howDoYouWorkReplies.txt", function(err, data) {
 		if(err){
 			return console.log(err);
 		}
