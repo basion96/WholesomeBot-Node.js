@@ -52,8 +52,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			//if command is !asciiArt and an option is provided, bot will send that specific art, otherwise sends error message.
 			case 'asciiArt':
-			var artname = message.substring('asciiArt'+9);
-			if(asciiArt.hasOwnProperty('artname')){
+			var artname = message.substring(message.indexOf('asciiArt')+9);
+			if(asciiArt.hasOwnProperty(artname)){
 				bot.sendMessage({
 					to: channelID,
 					message: asciiArt[artname]
@@ -105,14 +105,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			bot.uploadFile({
 				to: channelID,
 				file: "pictures/"+wholesomePics[getRandom(wholesomePics.length)]
-			});
-			break;
-			
-			//
-			case 'asciiAnimal':
-			bot.sendMessage({
-				to: channelID,
-				message: 
 			});
 			break;
 			
