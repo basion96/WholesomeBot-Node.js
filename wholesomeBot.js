@@ -97,43 +97,46 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}
 				});
 			break;
-			//if command is !choose and ChoiceOptionss are provided, bot will randomly choose one of the provided ChoiceOptionss and send a message to the channel saying its reponse. 
+			//if command is !choose and choiceOptionss are provided, bot will randomly choose one of the provided choiceOptionss and send a message to the channel saying its reponse. 
 			case 'choose':
-				var ChoiceOptions = new Array();
+				var choiceOptions = new Array();
 				message=message.substring(message.indexOf('choose')+6);
-				
-				//if message is not empty and has greater than 1 ChoiceOptions
-				if(message!="" && ChoiceOptions.length>1){
-					while(message.substring(0,1!="")){
-						if(message.indexOf('|')!=-1){
-							ChoiceOptions.push(message.substring(0, message.indexOf('|')));
-						}
-						else{
-							ChoiceOptions.push(message);
-						}
-						
-						if(message.indexOf("|")!=-1){
-							message=message.substring(message.indexOf('|')+1);
-						}
-						else{
-							message="";
-						}
+				while(message.substring(0,1!="")){
+					if(message.indexOf('|')!=-1){
+						choiceOptions.push(message.substring(0, message.indexOf('|')));
 					}
+					else{
+						choiceOptions.push(message);
+					}
+					
+					if(message.indexOf("|")!=-1){
+						message=message.substring(message.indexOf('|')+1);
+					}
+					else{
+						message="";
+					}
+				}
+				console.log('Message: '+message+'\narray length: '+choiceOptions.length);
+				
+				//if message is not empty and has greater than 1 choiceOptions
+				if(choiceOptions.length>1){
 					bot.sendMessage({
 						to: channelID,
-						message: 'I choose: ' + ChoiceOptions[getRandom(ChoiceOptions.length)]
+						message: 'I choose: ' + choiceOptions[getRandom(choiceOptions.length)]
 					});
 				}
-				else if(ChoiceOptions.length==1){
+				//if array contains only 1 element
+				else if(choiceOptions.length==1){
 					bot.sendMessage({
 						to: channelID,
-						message: 'I dont really get a choice do i haha, well i guess im gonna choose ' + ChoiceOptions[0] + ' :upside_down: '
+						message: 'I dont really get a choice do i haha, well i guess im gonna choose ' + choiceOptions[0] + ' :upside_down: '
 					});
 				}
-				else if(message==""){
+				//if the array contains no elements
+				else if(choiceOptions.length==0){
 					bot.sendMessage({
 						to: channelID,
-						message: 'Ahhhhhh, i think you forgot to add my ChoiceOptionss :sweat_smile: '
+						message: 'Ahhhhhh, i think you forgot to add my options :sweat_smile: '
 					});
 				}
 			break;
@@ -191,15 +194,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	 }
 });
 
-function chooseChoiceOptions(message, channel){
-	var ChoiceOptions = new Array();
+function choosechoiceOptions(message, channel){
+	var choiceOptions = new Array();
 	message=message.substring(message.indexOf('choose')+6);
 	while(message.substring(0,1!="")){
 		if(message.indexOf('|')!=-1){
-			ChoiceOptions.push(message.substring(0, message.indexOf('|')));
+			choiceOptions.push(message.substring(0, message.indexOf('|')));
 		}
 		else{
-			ChoiceOptions.push(message);
+			choiceOptions.push(message);
 		}
 		
 		if(message.indexOf("|")!=-1){
@@ -209,12 +212,12 @@ function chooseChoiceOptions(message, channel){
 			message="";
 		}
 	}
-	for(var i=0; i<ChoiceOptions.length; i++){
-		console.log(ChoiceOptions[i]);
+	for(var i=0; i<choiceOptions.length; i++){
+		console.log(choiceOptions[i]);
 	}
 	bot.sendMessage({
 		to: channelID,
-		message: ChoiceOptions[getRandom(ChoiceOptions.length)]
+		message: choiceOptions[getRandom(choiceOptions.length)]
 	});
 }
 
