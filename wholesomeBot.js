@@ -2,6 +2,7 @@ var Discord = require('discord.io');
 var config = require('./config.json');
 var moment = require('moment');
 var momentTZ = require('moment-timezone');
+var asciiArt = require('./asciiArt');
 
 var wholesomeMessages = new Array();
 var cheerUpMessages = new Array();
@@ -40,6 +41,7 @@ bot.on('disconnect', function(erMsg, code) {
 //when a message is sent to the discord
 bot.on('message', function (user, userID, channelID, message, evt) {
 	console.log(user + ": " + message);
+	
 	//checks to see if the message starts with the specified prefix defined in the config file.
     if (message.substring(0, 1) == config.prefix) {
         var args = message.substring(1).split(' ');
@@ -47,6 +49,24 @@ bot.on('message', function (user, userID, channelID, message, evt) {
        
         args = args.splice(1);
         switch(cmd) {
+			
+			//if command is !asciiArt and an option is provided, bot will send that specific art, otherwise sends error message.
+			case 'asciiArt':
+			var artname = message.substring('asciiArt'+9);
+			if(asciiArt.hasOwnProperty('artname')){
+				bot.sendMessage({
+					to: channelID,
+					message: asciiArt[artname]
+				});
+			}
+			else{
+				bot.sendMessage({
+					to: channelID,
+					message: 'I don\'t seem to be able to find that ascii art unfortunately :sweat:'
+				});
+			}
+            break;
+			
 			//if command is !wholesome, bot will grab a random wholesome message from the wholesomeReminders array and send it to the same channel as the command.
             case 'wholesome':
             bot.sendMessage({
@@ -54,11 +74,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				message: wholesomeMessages[getRandom(wholesomeMessages.length)]
 			});
             break;
+			
 			//if command is !byebye, the bot will turn off. Can only be turned on by the person that hosts the bot as the application will need to be restarted.
 			case "byebye":
 				bot.disconnect();
 				process.exit(0);
 			break;
+			
 			//if command is !cheerMeUp, bot will send a message to the same channel as the command to cheer the person up.
 			case "cheerMeUp":
 			bot.sendMessage({
@@ -66,6 +88,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					message: cheerUpMessages[getRandom(cheerUpMessages.length)]
 				});
 			break;
+			
 			//if command is !updateLists, the arrays will be refreshed and any new messages in them will be added.
 			case "updateLists":
 				console.log("Updating arrays...");
@@ -76,6 +99,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					message: 'The arrays have been updated :blush:'
 				});
 			break;
+			
 			//if command is !wholesomeImg, bot will send a randomly selected wholesome image to the same channel as the command.
 			case 'wholesomeImg':
 			bot.uploadFile({
@@ -83,6 +107,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				file: "pictures/"+wholesomePics[getRandom(wholesomePics.length)]
 			});
 			break;
+			
+			//
+			case 'asciiAnimal':
+			bot.sendMessage({
+				to: channelID,
+				message: 
+			});
+			break;
+			
 			//if command is !info, bot will send some basic information about itself.
 			case 'info':
 				bot.sendMessage({
@@ -97,42 +130,44 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					}
 				});
 			break;
-			//if command is !choose and choiceOptionss are provided, bot will randomly choose one of the provided choiceOptionss and send a message to the channel saying its reponse. 
+			
+			//if command is !choose and options are provided, bot will randomly choose one of the provided options and send a message to the channel saying its reponse. 
 			case 'choose':
 				var choiceOptions = new Array();
-				message=message.substring(message.indexOf('choose')+6);
+				message=message.substring(message.indexOf('choose')+7); //removes the command part of the message.
+				
+				//while the message is not empty.
 				while(message.substring(0,1!="")){
-					if(message.indexOf('|')!=-1){
-						choiceOptions.push(message.substring(0, message.indexOf('|')));
+					if(message.indexOf('|')!=-1){ //if theres still '|' identifiers after current option.
+						choiceOptions.push(message.substring(0, message.indexOf('|')));//adds option to the array.
 					}
-					else{
-						choiceOptions.push(message);
+					else{ //if current option is the last one.
+						choiceOptions.push(message);//adds option to array.
 					}
 					
-					if(message.indexOf("|")!=-1){
+					if(message.indexOf("|")!=-1){//if there are still options after the current one, the option that was just added is removed from the message.
 						message=message.substring(message.indexOf('|')+1);
 					}
-					else{
+					else{ //sets the message to empty.
 						message="";
 					}
 				}
-				console.log('Message: '+message+'\narray length: '+choiceOptions.length);
 				
-				//if message is not empty and has greater than 1 choiceOptions
+				//if message is not empty and has greater than 1 choiceOptions.
 				if(choiceOptions.length>1){
 					bot.sendMessage({
 						to: channelID,
 						message: 'I choose: ' + choiceOptions[getRandom(choiceOptions.length)]
 					});
 				}
-				//if array contains only 1 element
+				//if array contains only 1 element.
 				else if(choiceOptions.length==1){
 					bot.sendMessage({
 						to: channelID,
 						message: 'I dont really get a choice do i haha, well i guess im gonna choose ' + choiceOptions[0] + ' :upside_down: '
 					});
 				}
-				//if the array contains no elements
+				//if the array contains no elements.
 				else if(choiceOptions.length==0){
 					bot.sendMessage({
 						to: channelID,
@@ -142,49 +177,67 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
          }
      }
+	 
+	 //if message is not a distinct command
 	 else{
+		 
+		 // if message is a variation of 'i love you wholesomebot'
 		 if(message.toLowerCase()=='i love you wholesomebot' || message.toLowerCase()=='i love you <@380542695556251650>' || message.toLowerCase()=='<@380542695556251650> i love you' || message.toLowerCase()=='wholesomebot i love you'){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'i love you too ' + '<@'+userID+'>'
 				});
 		 }
+		 
+		 // if message is a variation of 'thank you wholesomebot'
 		 else if(message.toLowerCase().indexOf("thank you wholesomebot")!=-1 || message.toLowerCase().indexOf("thankyou wholesomebot")!=-1 || message.toLowerCase().indexOf("thanks wholesomebot")!=-1 || message.toLowerCase().indexOf("thank you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thanks <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thankyou <@380542695556251650>")!=-1){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'No problem :blush:'
 				});
 		 }
+		 
+		 // if message is a variation of 'how are you wholesomebot'
 		 else if(message.toLowerCase().indexOf("how are you wholesomebot")!=-1 || message.toLowerCase().indexOf("how're you wholesomebot")!=-1 || message.toLowerCase().indexOf("how you doing wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you today wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you doing today wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how're you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how you doing <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how are you today <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how are you doing today <@380542695556251650>")!=-1){
 			 bot.sendMessage({
 					to: channelID,
 					message: howAreYouReplies[getRandom(howAreYouReplies.length)]
 				});
 		 }
+		 
+		 // if message contains certain swear words
 		 else if(message.toLowerCase().indexOf("fuck")!=-1 || message.toLowerCase().indexOf("cunt")!=-1){
 			 bot.sendMessage({
 				 to:channelID,
 				 message: "Please watch your language :upside_down:"
 			 });
 		 }
+		 
+		 // if message is a variation of 'hey wholesomebot'
 		 else if(message.toLowerCase()=="hey <@380542695556251650>" || message.toLowerCase()=="hi <@380542695556251650>" || message.toLowerCase()=="hello <@380542695556251650>" || message.toLowerCase()=="hey wholesomebot" || message.toLowerCase()=="hi wholesomebot" || message.toLowerCase()=="hello wholesomebot"){
 			 bot.sendMessage({
 				 to: channelID,
 				 message: "Hey " + user
 			 });
 		 }
+		 
+		 // if message is a variation of 'ty wholesomebot'
 		 else if(message.toLowerCase()=="ty <@380542695556251650>" || message.toLowerCase()=="ty wholesomebot"){
 			 bot.sendMessage({
 				 to: channelID,
 				 message: 'np bby :kissing_heart:'
 			 });
 		 }
+		 
+		 // if message is 'SPOOK' or 'SPOOK!'
 		 else if(message=="SPOOK!" || message=="SPOOK"){
 			 bot.sendMessage({
 				 to: channelID,
 				 message: "AHH! Spooked again... :sweat_smile: "
 			 });
 		 }
+		 
+		 // if message is a variation of 'how do you work wholesomebot'
 		 else if(message.toLowerCase().indexOf("how do you work <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how do you work wholesomebot")!=-1){
 			bot.sendMessage({
 				to:channelID,
@@ -194,48 +247,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	 }
 });
 
-function choosechoiceOptions(message, channel){
-	var choiceOptions = new Array();
-	message=message.substring(message.indexOf('choose')+6);
-	while(message.substring(0,1!="")){
-		if(message.indexOf('|')!=-1){
-			choiceOptions.push(message.substring(0, message.indexOf('|')));
-		}
-		else{
-			choiceOptions.push(message);
-		}
-		
-		if(message.indexOf("|")!=-1){
-			message=message.substring(message.indexOf('|')+1);
-		}
-		else{
-			message="";
-		}
-	}
-	for(var i=0; i<choiceOptions.length; i++){
-		console.log(choiceOptions[i]);
-	}
-	bot.sendMessage({
-		to: channelID,
-		message: choiceOptions[getRandom(choiceOptions.length)]
-	});
-}
-
-function customMsg(channelID, msg){
-	bot.sendMessage({
-		to: channelID,
-		message: msg
-	});
-}
-
+//returns a random number from 0 to the arrays length
 function getRandom(arrayLength){
-	return Math.floor(Math.random()*arrayLength);
+	return Math.floor(Math.random()*(arrayLength-1));
 }
 
+// runs function every hour
 setInterval(function(){
-	var date = momentTZ.tz('Australia/Sydney').format('HH:mm');
+	var date = momentTZ.tz('Australia/Sydney').format('HH:mm'); //gets current time
+	
+	//if the current time matches, a wholesome message is sent
 	if(date=='12:00'){
 		var wholesomeMessage='';
+		
+		//repeats while the wholesome message is the same as the last one sent (will not be able to check last wholesome message if bot is turned off and back on)
 		do{
 			wholesomeMessage = wholesomeMessages[getRandom(wholesomeMessages.length)];
 		}while(wholesomeMessage==lastWholesomeMsg);
@@ -248,8 +273,11 @@ setInterval(function(){
 	}
 }, 3600000);
 
+//fills all the arrays with coresponding data
 function fillArrays(){
 	fs = require('fs');
+	
+	//fills the wholesomeMessages array with data from the wholesomeReminders text file
 	fs.readFile('./MessageFiles/wholesomeReminders.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
@@ -257,6 +285,7 @@ function fillArrays(){
 		wholesomeMessages = data.toString().split("\n");
 	});
 	
+	//fills the cheerUpMessages array with data from the cheerUpMessages text file
 	fs.readFile('./MessageFiles/cheerUpMessages.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
@@ -264,6 +293,7 @@ function fillArrays(){
 		cheerUpMessages = data.toString().split("\n");
 	});
 	
+	//fills the howAreYouReplies array with data from the howAreYouReplies text file
 	fs.readFile('./MessageFiles/howAreYouReplies.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
@@ -271,6 +301,7 @@ function fillArrays(){
 		howAreYouReplies = data.toString().split("\n");
 	});
 	
+	//fills the wholesomePics array with data from the pictures folder
 	fs.readdir("./pictures", function(err, data) {
 		if(err){
 			return console.log(err);
@@ -282,6 +313,7 @@ function fillArrays(){
 		}
 	});
 	
+	//fills the howDoYouWorkReplies array with data from the howDoYouWorkReplies text file
 	fs.readFile("./MessageFiles/howDoYouWorkReplies.txt", function(err, data) {
 		if(err){
 			return console.log(err);
