@@ -53,7 +53,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			//if command is !asciiArt and an option is provided, bot will send that specific art, otherwise sends error message.
 			case 'asciiArt':
 			var artname = message.substring(message.indexOf('asciiArt')+9);
-			if(asciiArt.hasOwnProperty(artname)){
+			if(asciiArt.hasOwnProperty(artname)){//if the key actually exists
 				bot.sendMessage({
 					to: channelID,
 					message: asciiArt[artname]
@@ -66,6 +66,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				});
 			}
             break;
+			
+			//if command is !asciiList, bot will send a list of all ascii keys a user can use as an options in the !asciiArt command.
+			case 'asciiList':
+				var keys = Object.keys(asciiArt);
+				bot.sendMessage({
+					to: channelID,
+					message: 'Here\'s the list of ascii art you can choose from :relaxed:  \n' + keys
+				});
+			break;
 			
 			//if command is !wholesome, bot will grab a random wholesome message from the wholesomeReminders array and send it to the same channel as the command.
             case 'wholesome':
