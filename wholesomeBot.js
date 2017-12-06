@@ -323,7 +323,7 @@ function fillArrays(){
 	});
 	
 	//fills the howDoYouWorkReplies array with data from the howDoYouWorkReplies text file.
-	fs.readFile("./data/messageFiles/howDoYouWorkReplies.txt", 'utf8', function(err, data) {
+	fs.readFile("./data/messages/howDoYouWorkReplies.txt", 'utf8', function(err, data) {
 		if(err){
 			return console.log(err);
 		}
@@ -331,7 +331,7 @@ function fillArrays(){
 	});
 	
 	//fills the quotes array with data from the quotes text file.
-	fs.readFile("./data/messageFiles/quotes.txt", 'utf8', function(err, data){
+	fs.readFile("./data/messages/quotes.txt", 'utf8', function(err, data){
 		if(err){
 			return console.log(err);
 		}
