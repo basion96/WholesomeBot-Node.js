@@ -1,13 +1,6 @@
 {
-	//Your bots token
 	"token": "",
-	
-	//the text channel you want wholesome mesages sent to daily
 	"publicChannel": "",
-	
-	//welcome channel for server (might be the same as public channel)
 	"welcomeChannel" : "",
-	
-	//bots command prefix, eg. !wholesome, !choose etc...
 	"prefix": "!"
 }
