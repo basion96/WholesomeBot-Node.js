@@ -38,6 +38,13 @@ bot.on('disconnect', function(erMsg, code) {
     bot.connect();
 });
 
+bot.on('guildMemberAdd', function(member){
+	bot.sendMessage({
+		to: config.welcomeChannel,
+		message: 'hey there ' + member + ', Welcome to the channel :blush:'
+	});
+});
+
 //when a message is sent to the discord
 bot.on('message', function (user, userID, channelID, message, evt) {
 	console.log(user + ": " + message);
