@@ -1,14 +1,14 @@
 var Discord = require('discord.io');
-var config = require('./config.json');
-var moment = require('moment');
+var config = require('./data/config.json');
 var momentTZ = require('moment-timezone');
-var asciiArt = require('./asciiArt');
+var asciiArt = require('./data/asciiArt');
 
 var wholesomeMessages = new Array();
 var cheerUpMessages = new Array();
 var howAreYouReplies = new Array();
 var wholesomePics = new Array();
 var howDoYouWorkReplies = new Array();
+var quotes = new Array();
 var lastWholesomeMsg='';
 
 // Initialize Discord Bot.
@@ -83,6 +83,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				message: wholesomeMessages[getRandom(wholesomeMessages.length)]
 			});
             break;
+			
+			//if command is !quote, boit will send a random quote from the quote array.
+			case 'quote':
+				bot.sendMessage({
+					to: channelID,
+					message: quotes[getRandom(quotes.length)]
+				});
+			break;
 			
 			//if command is !byebye, the bot will turn off. Can only be turned on by the person that hosts the bot as the application will need to be restarted.
 			case "byebye":
@@ -179,10 +187,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
          }
      }
 	 
-	 //if message is not a distinct command
+	 //if message is not a distinct command.
 	 else{
 		 
-		 // if message is a variation of 'i love you wholesomebot'
+		 // if message is a variation of 'i love you wholesomebot'.
 		 if(message.toLowerCase()=='i love you wholesomebot' || message.toLowerCase()=='i love you <@380542695556251650>' || message.toLowerCase()=='<@380542695556251650> i love you' || message.toLowerCase()=='wholesomebot i love you'){
 			 bot.sendMessage({
 					to: channelID,
@@ -190,7 +198,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				});
 		 }
 		 
-		 // if message is a variation of 'thank you wholesomebot'
+		 // if message is a variation of 'thank you wholesomebot'.
 		 else if(message.toLowerCase().indexOf("thank you wholesomebot")!=-1 || message.toLowerCase().indexOf("thankyou wholesomebot")!=-1 || message.toLowerCase().indexOf("thanks wholesomebot")!=-1 || message.toLowerCase().indexOf("thank you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thanks <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thankyou <@380542695556251650>")!=-1){
 			 bot.sendMessage({
 					to: channelID,
@@ -198,7 +206,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				});
 		 }
 		 
-		 // if message is a variation of 'how are you wholesomebot'
+		 // if message is a variation of 'how are you wholesomebot'.
 		 else if(message.toLowerCase().indexOf("how are you wholesomebot")!=-1 || message.toLowerCase().indexOf("how're you wholesomebot")!=-1 || message.toLowerCase().indexOf("how you doing wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you today wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you doing today wholesomebot")!=-1 || message.toLowerCase().indexOf("how are you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how're you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how you doing <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how are you today <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how are you doing today <@380542695556251650>")!=-1){
 			 bot.sendMessage({
 					to: channelID,
@@ -206,7 +214,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				});
 		 }
 		 
-		 // if message contains certain swear words
+		 // if message contains certain swear words.
 		 else if(message.toLowerCase().indexOf("fuck")!=-1 || message.toLowerCase().indexOf("cunt")!=-1){
 			 bot.sendMessage({
 				 to:channelID,
@@ -214,7 +222,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 });
 		 }
 		 
-		 // if message is a variation of 'hey wholesomebot'
+		 // if message is a variation of 'hey wholesomebot'.
 		 else if(message.toLowerCase()=="hey <@380542695556251650>" || message.toLowerCase()=="hi <@380542695556251650>" || message.toLowerCase()=="hello <@380542695556251650>" || message.toLowerCase()=="hey wholesomebot" || message.toLowerCase()=="hi wholesomebot" || message.toLowerCase()=="hello wholesomebot"){
 			 bot.sendMessage({
 				 to: channelID,
@@ -222,7 +230,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 });
 		 }
 		 
-		 // if message is a variation of 'ty wholesomebot'
+		 // if message is a variation of 'ty wholesomebot'.
 		 else if(message.toLowerCase()=="ty <@380542695556251650>" || message.toLowerCase()=="ty wholesomebot"){
 			 bot.sendMessage({
 				 to: channelID,
@@ -230,7 +238,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 });
 		 }
 		 
-		 // if message is 'SPOOK' or 'SPOOK!'
+		 // if message is 'SPOOK' or 'SPOOK!'.
 		 else if(message=="SPOOK!" || message=="SPOOK"){
 			 bot.sendMessage({
 				 to: channelID,
@@ -238,7 +246,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 });
 		 }
 		 
-		 // if message is a variation of 'how do you work wholesomebot'
+		 // if message is a variation of 'how do you work wholesomebot'.
 		 else if(message.toLowerCase().indexOf("how do you work <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("how do you work wholesomebot")!=-1){
 			bot.sendMessage({
 				to:channelID,
@@ -248,20 +256,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	 }
 });
 
-//returns a random number from 0 to the arrays length
+//returns a random number from 0 to the arrays length.
 function getRandom(arrayLength){
 	return Math.floor(Math.random()*(arrayLength-1));
 }
 
 // runs function every hour
 setInterval(function(){
-	var date = momentTZ.tz('Australia/Sydney').format('HH:mm'); //gets current time
+	var date = momentTZ.tz('Australia/Sydney').format('HH:mm'); //gets current time.
 	
-	//if the current time matches, a wholesome message is sent
+	//if the current time matches, a wholesome message is sent.
 	if(date=='12:00'){
 		var wholesomeMessage='';
 		
-		//repeats while the wholesome message is the same as the last one sent (will not be able to check last wholesome message if bot is turned off and back on)
+		//repeats while the wholesome message is the same as the last one sent (will not be able to check last wholesome message if bot is turned off and back on).
 		do{
 			wholesomeMessage = wholesomeMessages[getRandom(wholesomeMessages.length)];
 		}while(wholesomeMessage==lastWholesomeMsg);
@@ -274,36 +282,36 @@ setInterval(function(){
 	}
 }, 3600000);
 
-//fills all the arrays with coresponding data
+//fills all the arrays with coresponding data.
 function fillArrays(){
 	fs = require('fs');
 	
-	//fills the wholesomeMessages array with data from the wholesomeReminders text file
-	fs.readFile('./MessageFiles/wholesomeReminders.txt', 'utf8', function(err,data){
+	//fills the wholesomeMessages array with data from the wholesomeReminders text file.
+	fs.readFile('./data/messages/wholesomeReminders.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
 		}
 		wholesomeMessages = data.toString().split("\n");
 	});
 	
-	//fills the cheerUpMessages array with data from the cheerUpMessages text file
-	fs.readFile('./MessageFiles/cheerUpMessages.txt', 'utf8', function(err,data){
+	//fills the cheerUpMessages array with data from the cheerUpMessages text file.
+	fs.readFile('./data/messages/cheerUpMessages.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
 		}
 		cheerUpMessages = data.toString().split("\n");
 	});
 	
-	//fills the howAreYouReplies array with data from the howAreYouReplies text file
-	fs.readFile('./MessageFiles/howAreYouReplies.txt', 'utf8', function(err,data){
+	//fills the howAreYouReplies array with data from the howAreYouReplies text file.
+	fs.readFile('./data/messages/howAreYouReplies.txt', 'utf8', function(err,data){
 		if(err){
 			return console.log(err);
 		}
 		howAreYouReplies = data.toString().split("\n");
 	});
 	
-	//fills the wholesomePics array with data from the pictures folder
-	fs.readdir("./pictures", function(err, data) {
+	//fills the wholesomePics array with data from the pictures folder.
+	fs.readdir("./data/pictures", function(err, data) {
 		if(err){
 			return console.log(err);
 		}
@@ -314,11 +322,19 @@ function fillArrays(){
 		}
 	});
 	
-	//fills the howDoYouWorkReplies array with data from the howDoYouWorkReplies text file
-	fs.readFile("./MessageFiles/howDoYouWorkReplies.txt", function(err, data) {
+	//fills the howDoYouWorkReplies array with data from the howDoYouWorkReplies text file.
+	fs.readFile("./data/messageFiles/howDoYouWorkReplies.txt", 'utf8', function(err, data) {
 		if(err){
 			return console.log(err);
 		}
 		howDoYouWorkReplies = data.toString().split("\n");
+	});
+	
+	//fills the quotes array with data from the quotes text file.
+	fs.readFile("./data/messageFiles/quotes.txt", 'utf8', function(err, data){
+		if(err){
+			return console.log(err);
+		}
+		quotes = data.toString().split("\n");
 	});
 }
