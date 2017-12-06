@@ -45,4 +45,5 @@ Here's a run down on what each part does:
 - **publicChannel** - The channel ID of your public channel, this is used to send the dailt wholesome messages.
 - **welcomeChannel** - The channel ID fo your welcome page, depending on how your discord server is set up, this may be the same as your public channel.
 - **prefix** - this is the command prefix the bot will use to determine if the message is a command, this can be anything you like.
+
 To get the channel ID of the text channel, first make sure your in developer mode (User Settings -> Appearance -> Developer Mode), then right click the channel you want and click 'Copy ID'.
