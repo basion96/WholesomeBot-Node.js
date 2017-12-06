@@ -39,9 +39,10 @@ bot.on('disconnect', function(erMsg, code) {
 });
 
 bot.on('guildMemberAdd', function(member){
+	console.log(bot.users[member.id].username + 'has joined the channel');
 	bot.sendMessage({
 		to: config.welcomeChannel,
-		message: 'hey there ' + member + ', Welcome to the channel :blush:'
+		message: 'hey there ' + '<@'+member.id+'>' + ', Welcome to Good Vibes Only :blush:' //could use bot.users[member.id].username to just say user name instead of tagging them
 	});
 });
 
@@ -58,7 +59,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         switch(cmd) {
 			
 			//if command is !asciiArt and an option is provided, bot will send that specific art, otherwise sends error message.
-			case 'asciiArt':
+			case 'ascii':
 			var artname = message.substring(message.indexOf('asciiArt')+9);
 			if(asciiArt.hasOwnProperty(artname)){//if the key actually exists
 				bot.sendMessage({
