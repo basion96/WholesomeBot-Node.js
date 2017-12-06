@@ -5,6 +5,7 @@
   "main": "bot.js",
   "author": "Jason Horsnell",
   "dependencies": {
-	"discord.io": "^2.5.3"
+	"discord.io": "^2.5.3",
+	"moment-timezone": "^0.5.14"
   }
 }
