@@ -9,6 +9,10 @@ The list of commands for WholesomeBot is slowly expanding, here are the current 
 - **!cheerMeUp** - Sends a random message from cheerUpMessages file to cheer someone up.
 - **!updateLists** - Updates the arrays that store the messages/pictures, used for if you added a message/picture and you want it available to use asap.
 - **!wholesomeImg** - Sends a random wholesome image from the pictures folder.
+- **ascii** [some option] - Sends ascii art, art sent it dependent on the option the user puts in, eg. bear.
+- **asciiList** - Displays all the options a user can use for the !ascii command.
+- **quote** - Sends a random quote from the quote text file.
+- **choose** [some | options] - Will choose a random option given. Options must be seperated by | eg. !choose this one | or this one
 
 ## Other commands
 WholesomeBot will also respond to some messages that are sent to a channel. These messages are:
@@ -33,3 +37,12 @@ To install the bot on linux, simply type `git clone https://github.com/basion96/
 To update the bot, type `git pull` in the same directory as the bot.
 
 ### Windows
+
+## Configuring the bot
+Configuring Wholesome bot is very simple. go to the config.json file in the data folder to set the info.
+Here's a run down on what each part does:
+- **token** - Your bots token.
+- **publicChannel** - The channel ID of your public channel, this is used to send the dailt wholesome messages.
+- **welcomeChannel** - The channel ID fo your welcome page, depending on how your discord server is set up, this may be the same as your public channel.
+- **prefix** - this is the command prefix the bot will use to determine if the message is a command, this can be anything you like.
+To get the channel ID of the text channel, first make sure your in developer mode (User Settings -> Appearance -> Developer Mode), then right click the channel you want and click 'Copy ID'.
