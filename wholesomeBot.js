@@ -60,7 +60,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			//if command is !asciiArt and an option is provided, bot will send that specific art, otherwise sends error message.
 			case 'ascii':
-			var artname = message.substring(message.indexOf('asciiArt')+9);
+			var artname = message.substring(message.indexOf('ascii')+6);
 			if(asciiArt.hasOwnProperty(artname)){//if the key actually exists
 				bot.sendMessage({
 					to: channelID,
