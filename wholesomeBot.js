@@ -38,6 +38,7 @@ bot.on('disconnect', function(erMsg, code) {
     bot.connect();
 });
 
+//when a users joins the channel, bot sends a message to the welcome channel
 bot.on('guildMemberAdd', function(member){
 	console.log(bot.users[member.id].username + 'has joined the channel');
 	bot.sendMessage({
@@ -67,7 +68,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					message: asciiArt[artname]
 				});
 			}
-			else{
+			else{//if key doesnt exit
 				bot.sendMessage({
 					to: channelID,
 					message: 'I don\'t seem to be able to find that ascii art unfortunately :sweat:'
@@ -129,7 +130,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			case 'wholesomeImg':
 			bot.uploadFile({
 				to: channelID,
-				file: "pictures/"+wholesomePics[getRandom(wholesomePics.length)]
+				file: "data/pictures/"+wholesomePics[getRandom(wholesomePics.length)]
 			});
 			break;
 			
