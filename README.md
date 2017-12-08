@@ -11,10 +11,10 @@ The list of commands for WholesomeBot is slowly expanding, here are the current 
 - **!cheerMeUp** - Sends a random message from cheerUpMessages file to cheer someone up.
 - **!updateLists** - Updates the arrays that store the messages/pictures, used for if you added a message/picture and you want it available to use asap.
 - **!wholesomeImg** - Sends a random wholesome image from the pictures folder.
-- **ascii** [some option] - Sends ascii art, art sent it dependent on the option the user puts in, eg. bear.
-- **asciiList** - Displays all the options a user can use for the !ascii command.
-- **quote** - Sends a random quote from the quote text file.
-- **choose** [some | options] - Will choose a random option given. Options must be seperated by | eg. !choose this one | or this one
+- **!ascii** [some option] - Sends ascii art, art sent it dependent on the option the user puts in, eg. bear.
+- **!asciiList** - Displays all the options a user can use for the !ascii command.
+- **!quote** - Sends a random quote from the quote text file.
+- **!choose** [some | options] - Will choose a random option given. Options must be seperated by | eg. !choose this one | or this one
 
 ## Other commands
 WholesomeBot will also respond to some messages that are sent to a channel. These messages are:
