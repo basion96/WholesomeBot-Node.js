@@ -54,7 +54,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	console.log(user + ": " + message);
 	
 	//checks to see if the message starts with the specified prefix defined in the config file.
-    if (userID!=config.botID && message.substring(0, 1) == config.prefix) {
+    if (userID!=bot.id && message.substring(0, 1) == config.prefix) {
 		var args = message.substring(1).split(' ');
         var cmd = args[0];
        
