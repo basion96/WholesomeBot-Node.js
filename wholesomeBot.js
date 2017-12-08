@@ -294,7 +294,25 @@ function dailyWholesomeMsg(){
 }
 
 // runs function every hour
-setInterval(dailyWholesomeMsg(), 3600000);
+setInterval(function(){
+	var date = momentTZ.tz('Australia/Sydney').format('HH:mm'); //gets current time.
+	
+	//if the current time matches, a wholesome message is sent.
+	if(date==config.wholesomeMsgTime){
+		var wholesomeMessage='';
+		
+		//repeats while the wholesome message is the same as the last one sent (will not be able to check last wholesome message if bot is turned off and back on).
+		do{
+			wholesomeMessage = wholesomeMessages[getRandom(wholesomeMessages.length)];
+		}while(wholesomeMessage==lastWholesomeMsg);
+		
+		bot.sendMessage({
+			to: config.publicChannel,
+			message: wholesomeMessage
+		});
+		lastWholesomeMsg = wholesomeMessage;
+	}
+}, 3600000);
 
 //fills all the arrays with coresponding data.
 function fillArrays(){
