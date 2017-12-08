@@ -30,11 +30,13 @@ bot.on('ready', function (evt) {
 	});﻿
 	//fills the arrays.
 	fillArrays();
+	//runs the daily wholesome message function, could be problematic if the bot stops and starts multiple times during the given hour
+	dailyWholesomeMsg();
 });
 
 // Automatically reconnect if the bot disconnects from inactivity.
 bot.on('disconnect', function(erMsg, code) {
-    console.log('Bot disconnected: ', code, 'Reason:', erMsg);
+    console.log('Bot disconnected: ', code, 'Reason:', erMsg, 'Time: ' + momentTZ.tz('Australia/Sydney'));
     bot.connect();
 });
 
@@ -270,12 +272,12 @@ function getRandom(arrayLength){
 	return Math.floor(Math.random()*(arrayLength-1));
 }
 
-// runs function every hour
-setInterval(function(){
+//sends a wholesome message
+function dailyWholesomeMsg(){
 	var date = momentTZ.tz('Australia/Sydney').format('HH:mm'); //gets current time.
 	
 	//if the current time matches, a wholesome message is sent.
-	if(date=='12:00'){
+	if(date==config.wholesomeMsgTime){
 		var wholesomeMessage='';
 		
 		//repeats while the wholesome message is the same as the last one sent (will not be able to check last wholesome message if bot is turned off and back on).
@@ -289,7 +291,10 @@ setInterval(function(){
 		});
 		lastWholesomeMsg = wholesomeMessage;
 	}
-}, 3600000);
+}
+
+// runs function every hour
+setInterval(dailyWholesomeMsg(), 3600000);
 
 //fills all the arrays with coresponding data.
 function fillArrays(){
