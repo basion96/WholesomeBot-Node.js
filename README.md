@@ -1,6 +1,8 @@
 # WholesomeBot
 WholesomeBot is a discord bot designed to spread happiness and wholesomeness.
 
+Also please note that i am fairly new to the whole github thing, and this is my first time using javascript. There's bound to be bugs and stuff not working as it should be or in the most optimal way, but im getting there!
+
 ## Commands
 The list of commands for WholesomeBot is slowly expanding, here are the current ones:
 - **!info** - Displays information about the bot and links to this page.
