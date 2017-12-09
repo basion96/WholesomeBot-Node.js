@@ -294,7 +294,7 @@ function dailyWholesomeMsg(){
 }
 
 // runs dailyWholesomeMsg() every hour
-setInterval(dailyWholesomeMsg, 36);
+setInterval(dailyWholesomeMsg, 3600000);
 
 //fills all the arrays with coresponding data.
 function fillArrays(){
