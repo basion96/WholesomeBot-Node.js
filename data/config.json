@@ -2,6 +2,7 @@
 	"token": "",
 	"publicChannel": "",
 	"welcomeChannel" : "",
-	"prefix": "!",
-	"wholesomeMsgTime": ""
+	"wholesomeMsgTime": "",
+	"adminRole": "".
+	"prefix": "!"
 }
