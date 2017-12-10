@@ -25,8 +25,16 @@ WholesomeBot will also respond to some messages that are sent to a channel. Thes
 - SPOOK!
 - how do you work wholesomebot
 
+## Pictures
+You will need to supply your own pictures for wholesomebot. Thankfully this is as easy as grabbing some wholesome pictures you like, and dropping them in the pictures folder.
+Added more pictures while the bot was running and dont want to restart the bot to use them? Just type !updateLists and the lists will then include them.
+
+## Wholesome messages
+Unlike the pictures, wholesome messages are provided. There are quite a few and more are added every so often. Feel free to give suggestions to be added.
+
 ## Future plans
 - Joining voice channels and playing music
+
 
 ## Setting up the bot
 First of all make sure you have made a bot account, and that ou have added it to your server.
