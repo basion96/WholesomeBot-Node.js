@@ -105,8 +105,40 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			//if command is !byebye, the bot will turn off. Can only be turned on by the person that hosts the bot as the application will need to be restarted.
 			case "byebye":
-				bot.disconnect();
-				process.exit(0);
+				var serverID = bot.channels[channelID].guild_id; //gets server ID
+				var adminUsr=false;
+				var adminRole='';
+				for(var i in bot.servers[serverID].roles){
+					if(bot.servers[serverID].roles[i].name==config.adminRole){
+						adminRole=bot.servers[serverID].roles[i].id;
+					}
+				}
+				//while the specified role has not been found, loops through the users roles
+				var count=0;
+				var continueLoop=true;
+				while(continueLoop==true){
+					if(bot.servers[serverID].members[userID].roles[count]==adminRole){//if the roles match
+						adminUsr=true;
+						continueLoop=false;
+					}
+					else if(bot.servers[serverID].members[userID].roles[count]==undefined){//if roles dont match and there are no more roles
+						continueLoop=false;
+					}
+					else{//if roles dont match
+						continueLoop=true;
+					}
+					count++;
+				}
+				if(adminUsr){
+					bot.disconnect;
+					process.exit(0);
+				}
+				else{//if user is not in specified role
+					bot.sendMessage({
+						to: channelID,
+						message: 'Sorry, but only the servers admin can use that command :kissing_heart:'
+					});
+				}
 			break;
 			
 			//if command is !cheerMeUp, bot will send a message to the same channel as the command to cheer the person up.
