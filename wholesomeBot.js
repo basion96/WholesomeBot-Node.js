@@ -1,14 +1,16 @@
-var Discord = require('discord.io');
-var config = require('./data/config.json');
-var momentTZ = require('moment-timezone');
-var asciiArt = require('./data/asciiArt');
+var Discord = require('discord.io'),
+	config = require('./data/config.json'),
+	momentTZ = require('moment-timezone'),
+	asciiArt = require('./data/asciiArt');
 
-var wholesomeMessages = new Array();
-var cheerUpMessages = new Array();
-var howAreYouReplies = new Array();
-var wholesomePics = new Array();
-var howDoYouWorkReplies = new Array();
-var quotes = new Array();
+var wholesomeMessages = [],
+	cheerUpMessages = [],
+	howAreYouReplies = [],
+	wholesomePics = [],
+	howDoYouWorkReplies = [],
+	quotes = [],
+	compliments = [];
+	
 var lastWholesomeMsg='';
 
 // Initialize Discord Bot.
@@ -185,7 +187,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			
 			//if command is !choose and options are provided, bot will randomly choose one of the provided options and send a message to the channel saying its reponse. 
 			case 'choose':
-				var choiceOptions = new Array();
+				var choiceOptions = [];
 				message=message.substring(message.indexOf('choose')+7); //removes the command part of the message.
 				
 				//while the message is not empty.
@@ -226,6 +228,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						message: 'Ahhhhhh, i think you forgot to add my options :sweat_smile: '
 					});
 				}
+			break;
+			case 'compliment':
+				bot.sendMessage({
+					to: channelID,
+					message: compliments[getRandom(compliments.length)]
+				});
 			break;
          }
      }
@@ -382,5 +390,13 @@ function fillArrays(){
 			return console.log(err);
 		}
 		quotes = data.toString().split("\n");
+	});
+	
+	//fills the compliments array with data from the compliments text file.
+	fs.readFile("./data/messages/compliments.txt", 'utf8', function(err, data){
+		if(err){
+			return console.log(err);
+		}
+		compliments = data.toString().split("\n");
 	});
 }
