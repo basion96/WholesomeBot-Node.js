@@ -232,7 +232,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			case 'compliment':
 				bot.sendMessage({
 					to: channelID,
-					message: compliments[getRandom(compliments.length)]
+					message: '<@'+userID+'> ' + compliments[getRandom(compliments.length)]
 				});
 			break;
          }
