@@ -253,7 +253,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 }
 		 
 		 // if message is a variation of 'thank you wholesomebot'.
-		 else if(message.toLowerCase().indexOf("thank you wholesomebot")!=-1 || message.toLowerCase().indexOf("thankyou wholesomebot")!=-1 || message.toLowerCase().indexOf("thanks wholesomebot")!=-1 || message.toLowerCase().indexOf("thank you <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thanks <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("thankyou <@380542695556251650>")!=-1){
+		 else if(/thanks|(thank you)|thankyou wholesomebot|<@380542695556251650>/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'No problem :blush:'
