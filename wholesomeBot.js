@@ -9,6 +9,8 @@ var wholesomeMessages = [],
 	wholesomePics = [],
 	howDoYouWorkReplies = [],
 	quotes = [],
+	whatAreYouDoingReplies = [],
+	presenceMsg = [],
 	compliments = [];
 	
 var lastWholesomeMsg='';
@@ -24,13 +26,14 @@ var bot = new Discord.Client({
 bot.on('ready', function (evt) {
     console.log('Connected');
     console.log('Logged in as: '+ bot.username + ' - (' + bot.id + ')');
+	//sets the presence message (what the bot is playing)
 	bot.setPresence({ 
 		game: { 
 			name: 'with unicorns', 
 			type: 0 
 		} 
-	});﻿
-	//fills the arrays.
+	});
+	//fills arrays with data
 	fillArrays();
 	//runs the daily wholesome message function, could be problematic if the bot stops and starts multiple times during the given hour
 	dailyWholesomeMsg();
@@ -304,6 +307,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				message: howDoYouWorkReplies[getRandom(howDoYouWorkReplies.length)]
 			});
 		 }
+		 
+		 //if message is a variation of 'what are you up to wholesomebot'
+		 else if(message.toLowerCase().indexOf("what are you up to wholesomebot")!=-1 || message.toLowerCase().indexOf("what're you up to wholesomebot")!=-1 || message.toLowerCase().indexOf("what are you doing wholesomebot")!=-1 || message.toLowerCase().indexOf("what're you doing wholesomebot")!=-1 || message.toLowerCase().indexOf("what are you up to <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("what're you up to <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("what are you doing <@380542695556251650>")!=-1 || message.toLowerCase().indexOf("what're you doing <@380542695556251650>")!=-1){
+			bot.sendMessage({
+				to:channelID,
+				message: whatAreYouDoingReplies[getRandom(whatAreYouDoingReplies.length)]
+			}); 
+		 }
 	 }
 });
 
@@ -398,5 +409,13 @@ function fillArrays(){
 			return console.log(err);
 		}
 		compliments = data.toString().split("\n");
+	});
+	
+	//fills the whatAreYouDoingReplies array with data from the whatAreYouDoingReplies text file.
+	fs.readFile("./data/messages/whatAreYouDoingReplies.txt", 'utf8', function(err, data){
+		if(err){
+			return console.log(err);
+		}
+		whatAreYouDoingReplies = data.toString().split("\n");
 	});
 }
