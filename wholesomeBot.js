@@ -11,7 +11,8 @@ var wholesomeMessages = [],
 	quotes = [],
 	whatAreYouDoingReplies = [],
 	presenceMsg = [],
-	compliments = [];
+	compliments = [],
+	recentMsgs = [];
 	
 var lastWholesomeMsg='';
 
@@ -56,12 +57,21 @@ bot.on('guildMemberAdd', function(member){
 
 //when a message is sent to the discord
 bot.on('message', function (user, userID, channelID, message, evt) {
-	console.log(user + ": " + message);
+	console.log(user + ': ' + message + '\n');
+	
 	
 	//checks to see if the message starts with the specified prefix defined in the config file.
     if (userID!=bot.id && message.substring(0, 1) == config.prefix) {
 		var args = message.substring(1).split(' ');
         var cmd = args[0];
+		
+		if(userID!=config.clientID){
+			recentMsgs.push(message);
+			
+			if(){
+				
+			}
+		}
        
         args = args.splice(1);
         switch(cmd) {
@@ -169,6 +179,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			case 'wholesomeImg':
 			bot.uploadFile({
 				to: channelID,
+				message: 'Here\'s a wholesome image for you :blush:',
 				file: "data/pictures/"+wholesomePics[getRandom(wholesomePics.length)]
 			});
 			break;
@@ -269,7 +280,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 }
 		 
 		 // if message contains certain swear words.
-		 else if(message.toLowerCase().indexOf("fuck")!=-1 || message.toLowerCase().indexOf("cunt")!=-1){
+		 else if(/(fuck|cunt)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 				 to:channelID,
 				 message: "Please watch your language :upside_down:"
@@ -314,6 +325,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				to:channelID,
 				message: whatAreYouDoingReplies[getRandom(whatAreYouDoingReplies.length)]
 			}); 
+		 }
+		 else if(/(whats|what is|what's)\s+a\s+wholesome\s+(image|img|picture|pic)/.test(message.toLowerCase())==true){
+			 bot.sendMessage({
+				 to: channelID,
+				 message: 'Well im glad you asked!\nA wholesome image/picture is a picture that\'s happy, cheerful, pure of heart, free of anger or hate, and is just generally sweet and compassionate :blush:\nWould you like an example?'
+			 });
+		 }
+		 else if(/(yes|sure|why not|definitely)/.test(message.toLowerCase())==true){
+			 if(){}
 		 }
 	 }
 });
