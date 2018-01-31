@@ -64,14 +64,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (userID!=bot.id && message.substring(0, 1) == config.prefix) {
 		var args = message.substring(1).split(' ');
         var cmd = args[0];
-		
-		if(userID==config.clientID && message=='Well im glad you asked!\nA wholesome image/picture is a picture that\'s happy, cheerful, pure of heart, free of anger or hate, and is just generally sweet and compassionate :blush:\nWould you like an example?'){
-			recentMsgs=[];
-			recentMsgs.push(message);
-		}
-		else if(recentMsgs.length=1){
-			recentMsgs.push(message);
-		}
        
         args = args.splice(1);
         switch(cmd) {
@@ -338,13 +330,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 });
 		 }
 		 else if(/(yes|sure|why not|definitely)/.test(message.toLowerCase())==true){
-			 if(recentMsgs[0]=='Well im glad you asked!\nA wholesome image/picture is a picture that\'s happy, cheerful, pure of heart, free of anger or hate, and is just generally sweet and compassionate :blush:\nWould you like an example?' && /(yes|sure|why not|definitely)/.test(recentMsgs[1].toLowerCase()){
-				 bot.uploadFile({
-					to: channelID,
-					message: 'Here\'s a wholesome image for you :blush:',
-					file: "data/pictures/"+wholesomePics[getRandom(wholesomePics.length)]
-				});
-			 }
+			 bot.uploadFile({
+				to: channelID,
+				message: 'Here\'s a wholesome image for you :blush:',
+				file: "data/pictures/"+wholesomePics[getRandom(wholesomePics.length)]
+			});
 		 }
 	 }
 });
