@@ -55,7 +55,7 @@ bot.on('guildMemberAdd', function(member){
 	});
 });
 
-//when a message is sent to the discord
+//when a message is sent to the discord chat
 bot.on('message', function (user, userID, channelID, message, evt) {
 	console.log(user + ': ' + message + '\n');
 	
@@ -64,14 +64,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (userID!=bot.id && message.substring(0, 1) == config.prefix) {
 		var args = message.substring(1).split(' ');
         var cmd = args[0];
-		
-		if(userID!=config.clientID){
-			recentMsgs.push(message);
-			
-			if(){
-				
-			}
-		}
        
         args = args.splice(1);
         switch(cmd) {
@@ -243,12 +235,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					});
 				}
 			break;
+			
+			//if command is !compliment, bot will send a compliment to the user who requested it.
 			case 'compliment':
+				var compliment = compliments[getRandom(compliments.length)]; //retrieves a compliment string from the array
+				compliment = compliment.replace('%user%', userID); //replaces %user% in the string with the users ID to tag them
 				bot.sendMessage({
 					to: channelID,
-					message: '<@'+userID+'> ' + compliments[getRandom(compliments.length)]
+					message: compliment
 				});
 			break;
+			
          }
      }
 	 
