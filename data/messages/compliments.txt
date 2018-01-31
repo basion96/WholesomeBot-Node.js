@@ -1,4 +1,9 @@
-You're an amazing person!
-You can do the thing!
-You're beautiful :blush:
-I think your an amazing wonderful person :blush:
+You're an amazing person %user%!
+You can do the thing %user%!
+You're beautiful %user% :blush:
+%user%, I think your an amazing and wonderful person :blush:
+You're a gift to the world, %user%, and don't let anyone tell you otherwise :kissing_heart: 
+%user% your're perfect in everyway it counts :Kissing_heart:
+You're a cutie %user% :blush:
+I think you're gorgeous %user% :blush:
+I think you're sweet and kind %user% :blush:
