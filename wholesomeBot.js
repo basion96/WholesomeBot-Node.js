@@ -329,13 +329,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 message: 'Well im glad you asked!\nA wholesome image/picture is a picture that\'s happy, cheerful, pure of heart, free of anger or hate, and is just generally sweet and compassionate :blush:\nWould you like an example?'
 			 });
 		 }
-		 else if(/(yes|sure|why not|definitely)/.test(message.toLowerCase())==true){
+		 /*
+		 else if(/(yes|sure|why not|definitely)/.test(message.toLowerCase())==true){ // fix this to make sure it checks that wholesome bot has asked the user if they want a demo img
 			 bot.uploadFile({
 				to: channelID,
 				message: 'Here\'s a wholesome image for you :blush:',
 				file: "data/pictures/"+wholesomePics[getRandom(wholesomePics.length)]
 			});
 		 }
+		 */
 	 }
 });
 
