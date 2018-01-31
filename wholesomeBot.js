@@ -244,7 +244,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			//if command is !compliment, bot will send a compliment to the user who requested it.
 			case 'compliment':
 				var compliment = compliments[getRandom(compliments.length)]; //retrieves a compliment string from the array
-				compliment = compliment.replace('%user%', userID); //replaces %user% in the string with the users ID to tag them
+				compliment = compliment.replace('%user%', '<@'+userID+'>'); //replaces %user% in the string with the users ID to tag them
 				bot.sendMessage({
 					to: channelID,
 					message: compliment
