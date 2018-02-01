@@ -11,8 +11,7 @@ var wholesomeMessages = [],
 	quotes = [],
 	whatAreYouDoingReplies = [],
 	presenceMsg = [],
-	compliments = [],
-	recentMsgs = [];
+	compliments = [];
 	
 var lastWholesomeMsg='';
 
@@ -59,7 +58,6 @@ bot.on('guildMemberAdd', function(member){
 bot.on('message', function (user, userID, channelID, message, evt) {
 	console.log(user + ': ' + message + '\n');
 	
-	
 	//checks to see if the message starts with the specified prefix defined in the config file.
     if (userID!=bot.id && message.substring(0, 1) == config.prefix) {
 		var args = message.substring(1).split(' ');
@@ -77,7 +75,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					message: asciiArt[artname]
 				});
 			}
-			else{//if key doesnt exit
+			else{//if key doesn't exit
 				bot.sendMessage({
 					to: channelID,
 					message: 'I don\'t seem to be able to find that ascii art unfortunately :sweat:'
@@ -85,7 +83,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			}
             break;
 			
-			//if command is !asciiList, bot will send a list of all ascii keys a user can use as an options in the !asciiArt command.
+			//if command is !asciiList, bot will send a list of all ASCII keys a user can use as an options in the !asciiArt command.
 			case 'asciiList':
 				var keys = Object.keys(asciiArt);
 				bot.sendMessage({
@@ -102,7 +100,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			});
             break;
 			
-			//if command is !quote, boit will send a random quote from the quote array.
+			//if command is !quote, bot will send a random quote from the quote array.
 			case 'quote':
 				bot.sendMessage({
 					to: channelID,
@@ -128,10 +126,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						adminUsr=true;
 						continueLoop=false;
 					}
-					else if(bot.servers[serverID].members[userID].roles[count]==undefined){//if roles dont match and there are no more roles
+					else if(bot.servers[serverID].members[userID].roles[count]==undefined){//if roles don't match and there are no more roles
 						continueLoop=false;
 					}
-					else{//if roles dont match
+					else{//if roles don't match
 						continueLoop=true;
 					}
 					count++;
@@ -250,8 +248,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
      }
 	 
 	 //if message is not a distinct command.
-	 else{
-		 
+	 else{		 
 		 // if message is a variation of 'i love you wholesomebot'.
 		 if(/i\s+love\s+you(?!\n|\r)\s+(wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
@@ -285,7 +282,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 }
 		 
 		 // if message is a variation of 'hey wholesomebot'.
-		 else if(/(hey|hi|hello|whats up|what's up) (wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
+		 else if(/(hey|hi|hello|whats up|what's up|heyo) (wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 				 to: channelID,
 				 message: "Hey " + user
@@ -323,21 +320,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				message: whatAreYouDoingReplies[getRandom(whatAreYouDoingReplies.length)]
 			}); 
 		 }
-		 else if(/(whats|what is|what's)\s+a\s+wholesome\s+(image|img|picture|pic)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-				 to: channelID,
-				 message: 'Well im glad you asked!\nA wholesome image/picture is a picture that\'s happy, cheerful, pure of heart, free of anger or hate, and is just generally sweet and compassionate :blush:\nWould you like an example?'
-			 });
-		 }
-		 /*
-		 else if(/(yes|sure|why not|definitely)/.test(message.toLowerCase())==true){ // fix this to make sure it checks that wholesome bot has asked the user if they want a demo img
-			 bot.uploadFile({
-				to: channelID,
-				message: 'Here\'s a wholesome image for you :blush:',
-				file: "data/pictures/"+wholesomePics[getRandom(wholesomePics.length)]
-			});
-		 }
-		 */
 	 }
 });
 
@@ -370,7 +352,7 @@ function dailyWholesomeMsg(){
 // runs dailyWholesomeMsg() every hour
 setInterval(dailyWholesomeMsg, 3600000);
 
-//fills all the arrays with coresponding data.
+//fills all the arrays with corresponding data.
 function fillArrays(){
 	fs = require('fs');
 	
