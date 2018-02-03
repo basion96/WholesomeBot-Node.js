@@ -109,7 +109,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			
 			//if command is !byebye, the bot will turn off. Can only be turned on by the person that hosts the bot as the application will need to be restarted.
-			case "byebye":
+			case 'byebye':
 				var serverID = bot.channels[channelID].guild_id; //gets server ID
 				var adminUsr=false;
 				var adminRole='';
@@ -147,7 +147,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			
 			//if command is !cheerMeUp, bot will send a message to the same channel as the command to cheer the person up.
-			case "cheerMeUp":
+			case 'cheerMeUp':
 			bot.sendMessage({
 					to: channelID,
 					message: cheerUpMessages[getRandom(cheerUpMessages.length)]
@@ -155,10 +155,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			
 			//if command is !updateLists, the arrays will be refreshed and any new messages in them will be added.
-			case "updateLists":
-				console.log("Updating arrays...");
+			case 'updateLists':
+				console.log('Updating arrays...');
 				fillArrays();
-				console.log("Arrays updated!");
+				console.log('Arrays updated!');
 				bot.sendMessage({
 					to: channelID,
 					message: 'The arrays have been updated :blush:'
@@ -170,7 +170,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			bot.uploadFile({
 				to: channelID,
 				message: 'Here\'s a wholesome image for you :blush:',
-				file: "data/pictures/"+wholesomePics[getRandom(wholesomePics.length)]
+				file: 'data/pictures/'+wholesomePics[getRandom(wholesomePics.length)]
 			});
 			break;
 			
@@ -195,7 +195,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				message=message.substring(message.indexOf('choose')+7); //removes the command part of the message.
 				
 				//while the message is not empty.
-				while(message.substring(0,1!="")){
+				while(message.substring(0,1!='')){
 					if(message.indexOf('|')!=-1){ //if theres still '|' identifiers after current option.
 						choiceOptions.push(message.substring(0, message.indexOf('|')));//adds option to the array.
 					}
@@ -203,11 +203,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						choiceOptions.push(message);//adds option to array.
 					}
 					
-					if(message.indexOf("|")!=-1){//if there are still options after the current one, the option that was just added is removed from the message.
+					if(message.indexOf('|')!=-1){//if there are still options after the current one, the option that was just added is removed from the message.
 						message=message.substring(message.indexOf('|')+1);
 					}
 					else{ //sets the message to empty.
-						message="";
+						message='';
 					}
 				}
 				
@@ -250,15 +250,23 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	 //if message is not a distinct command.
 	 else{		 
 		 // if message is a variation of 'i love you wholesomebot'.
-		 if(/i\s+love\s+you(?!\n|\r)\s+(wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
+		 if(/i\s+love\s+you(?!\n|\r)\s+(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'i love you too ' + '<@'+userID+'>'
 				});
 		 }
 		 
+		 //if a user says a varitaion of 'i love you too wholesomebot'.
+		 else if(/i love you (to|too) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+			 bot.sendMessage({
+				 to: channelID,
+				 message: <3
+			 });
+		 }
+		 
 		 // if message is a variation of 'thank you wholesomebot'.
-		 else if(/(thanks|thank you|thankyou)(?!\n|\r)\s+(wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
+		 else if(/(thanks|thank you|thankyou)(?!\n|\r)\s+(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'No problem :blush:'
@@ -266,7 +274,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 }
 		 
 		 // if message is a variation of 'how are you wholesomebot'.
-		 else if(/(how are|how're)\s+you\s+((doing|today)\s+)*(wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
+		 else if(/(how are|how're)\s+you\s+((doing|today)\s+)*(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 					to: channelID,
 					message: howAreYouReplies[getRandom(howAreYouReplies.length)]
@@ -277,20 +285,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 else if(/(fuck|cunt)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 				 to:channelID,
-				 message: "Please watch your language :upside_down:"
+				 message: 'Please watch your language :upside_down:'
 			 });
 		 }
 		 
 		 // if message is a variation of 'hey wholesomebot'.
-		 else if(/(hey|hi|hello|whats up|what's up|heyo) (wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
+		 else if(/(hey|hi|hello|whats up|what's up|heyo) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 				 to: channelID,
-				 message: "Hey " + user
+				 message: 'Hey ' + user
 			 });
 		 }
 		 
 		 // if message is a variation of 'ty wholesomebot'.
-		 else if(/ty (wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
+		 else if(/ty (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 				 to: channelID,
 				 message: 'np bby :kissing_heart:'
@@ -301,12 +309,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 else if(/(SPOOK|SPOOK!)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 				 to: channelID,
-				 message: "AHH! Spooked again... :sweat_smile: "
+				 message: 'AHH! Spooked again... :sweat_smile: '
 			 });
 		 }
 		 
 		 // if message is a variation of 'how do you work wholesomebot'.
-		 else if(/how (exactly\s+)?do you work (wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
+		 else if(/how (exactly\s+)?do you work (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			bot.sendMessage({
 				to:channelID,
 				message: howDoYouWorkReplies[getRandom(howDoYouWorkReplies.length)]
@@ -314,7 +322,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 }
 		 
 		 //if message is a variation of 'what are you up to wholesomebot'
-		 else if(/(what are|what're) you (up to|doing) (wholesomebot|<@380542695556251650>)/.test(message.toLowerCase())==true){
+		 else if(/(what are|what're) you (up to|doing) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			bot.sendMessage({
 				to:channelID,
 				message: whatAreYouDoingReplies[getRandom(whatAreYouDoingReplies.length)]
