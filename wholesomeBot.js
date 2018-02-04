@@ -261,7 +261,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 else if(/i love you (to|too) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 				 to: channelID,
-				 message: <3
+				 message: '<3'
 			 });
 		 }
 		 
