@@ -5,16 +5,18 @@ Also please note that i am fairly new to the whole github thing, and this is my 
 
 ## Commands
 The list of commands for WholesomeBot is slowly expanding, here are the current ones:
-- **!info** - Displays information about the bot and links to this page.
+- **!help** - Displays all available commands
+- **!ascii** [some option] - Sends ascii art, art sent it dependent on the option the user puts in, eg. bear
+- **!asciiList** - Displays all the options a user can use for the !ascii command.
 - **!wholesome** - Sends a random wholsome message from the wholesomeReminders file.
+- **!quote** - Sends a random quote from the quote text file.
 - **!byebye** - Turns the bot off.
 - **!cheerMeUp** - Sends a random message from cheerUpMessages file to cheer someone up.
 - **!updateLists** - Updates the arrays that store the messages/pictures, used for if you added a message/picture and you want it available to use asap.
 - **!wholesomeImg** - Sends a random wholesome image from the pictures folder.
-- **!ascii** [some option] - Sends ascii art, art sent it dependent on the option the user puts in, eg. bear.
-- **!asciiList** - Displays all the options a user can use for the !ascii command.
-- **!quote** - Sends a random quote from the quote text file.
+- **!info** - Displays information about the bot and links to this page.
 - **!choose** [some | options] - Will choose a random option given. Options must be seperated by | eg. !choose this one | or this one
+- **!compliment** - Sends a compliment to the user.
 
 ## Other commands
 WholesomeBot will also respond to some messages that are sent to a channel. These messages are (and include some variants):
@@ -34,6 +36,7 @@ WholesomeBot will also respond to some messages that are sent to a channel. Thes
 - who do you love wholesomebot
 - are you an ai wholesomebot
 - you look good today wholesomebot
+
 As you can tell, having wholesomebot at the end is kinda needed, can also tag wholesomebot instead
 
 ## Pictures
