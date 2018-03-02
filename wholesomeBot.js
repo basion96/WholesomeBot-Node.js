@@ -66,22 +66,40 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         args = args.splice(1);
         switch(cmd) {
 			
+			//if command is !help
+			case 'help':
+				bot.sendMessage({
+					to: channelID,
+					message: 'Help is here! Here\'s a list of commands:\
+								\n!ascii [artname] -displays ascii art\
+								\n!asciiList -displays list of possible ascii art\
+								\n!wholesome -send wholesome message\
+								\n!quote -sends a quote\
+								\n!byebye -turns wholesomebot off (admins only)\
+								\n!cheerMeUp -sends a message to help cheer you up\
+								\n!updateLists -updates the message lists(admin only)\
+								\n!info -displays info about the bot\
+								\n!choose [option | option | etc...] -makes wholesomebot choose between options you provide\
+								\n!wholesomeImg -sends a wholesome image\
+								\n!compliment -sends you a compliment'
+				});
+			
 			//if command is !asciiArt and an option is provided, bot will send that specific art, otherwise sends error message.
 			case 'ascii':
 			var artname = message.substring(message.indexOf('ascii')+6);
-			if(asciiArt.hasOwnProperty(artname)){//if the key actually exists
-				bot.sendMessage({
-					to: channelID,
-					message: asciiArt[artname]
-				});
-			}
-			else{//if key doesn't exit
-				bot.sendMessage({
-					to: channelID,
-					message: 'I don\'t seem to be able to find that ascii art unfortunately :sweat:'
-				});
-			}
-            break;
+				if(asciiArt.hasOwnProperty(artname)){//if the key actually exists
+					bot.sendMessage({
+						to: channelID,
+						message: asciiArt[artname]
+					});
+				}
+				else{//if key doesn't exit
+					bot.sendMessage({
+						to: channelID,
+						message: 'I don\'t seem to be able to find that ascii art unfortunately :sweat:'
+					});
+				}
+				break;
 			
 			//if command is !asciiList, bot will send a list of all ASCII keys a user can use as an options in the !asciiArt command.
 			case 'asciiList':
