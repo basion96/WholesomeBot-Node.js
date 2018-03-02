@@ -17,13 +17,24 @@ The list of commands for WholesomeBot is slowly expanding, here are the current 
 - **!choose** [some | options] - Will choose a random option given. Options must be seperated by | eg. !choose this one | or this one
 
 ## Other commands
-WholesomeBot will also respond to some messages that are sent to a channel. These messages are:
+WholesomeBot will also respond to some messages that are sent to a channel. These messages are (and include some variants):
 - i love you wholesomebot
-- thank you wholesomebot (and some other variants)
-- how are you wholesomebot (and some other variants)
-- hi wholesomebot (and some other variants)
+- i love you too wholesomebot
+- thank you wholesomebot 
+- how are you wholesomebot 
+- (some swear words)
+- hi wholesomebot 
+- ty wholesomebot
 - SPOOK!
 - how do you work wholesomebot
+- what are you doing wholesomebot
+- do you have a crush wholesomebot
+- do you believe in love wholesomebot
+- who do you like wholesomebot
+- who do you love wholesomebot
+- are you an ai wholesomebot
+- you look good today wholesomebot
+As you can tell, having wholesomebot at the end is kinda needed, can also tag wholesomebot instead
 
 ## Pictures
 You will need to supply your own pictures for wholesomebot. Thankfully this is as easy as grabbing some wholesome pictures you like, and dropping them in the pictures folder.
