@@ -348,7 +348,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 }
 		 
 		 //if message is a variation of 'do you have a crush on anyone wholesomebot'
-		 else if(/(do)? you have a crush on anyone (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+		 else if(/(do)? you have a crush (on anyone)? (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
 			bot.sendMessage({
 				to:channelID,
 				message: 'I might....\n but i cant\'t tell you because its a secret :wink: '
@@ -388,7 +388,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 }
 		 
 		//if message is a variation of 'you look good today wholesomebot'
-		else if(/(you|u) look (great|lovely|beautiful|amazing|cute|adorable|nice|good) (right now|atm|today|at the moment) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+		else if(/(you|u) look (great|lovely|beautiful|amazing|cute|adorable|nice|good) (right now|atm|today|at the moment)? (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
 			bot.sendMessage({
 				to:channelID,
 			message: 'Awwwww thanks ' + user + ', you\'re too kind :blush: You\'re looking amazing as always :heart_eyes: '
