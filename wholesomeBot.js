@@ -418,6 +418,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 message: 'you\'re more adorable ' + user + ' :blush: '
 			 });
 		 }
+		 
+		 //if message is a variation of 'you're adorable wholesomebot'
+		 else if(/(you are|you're|your|youre|ur|u|you) (to|2|too) (kind|nice|good|wholesome) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+			 bot.sendMessage({
+				 to:channelID,
+				 message: 'I always try my best to be the best i can be to everyone :blush:'
+			 });
+		 }
 	 }
 });
 
