@@ -63,6 +63,7 @@ Once you have done that, continue on with installing the bot on your device.
 ### Linux
 To install the bot on linux, simply type `git clone https://github.com/basion96/WholesomeBot.git`
 To update the bot, type `git pull` in the same directory as the bot.
+In the bot.sh file, change 'path/to/Wholesomebot' to the directory you installed wholesomebot in, eg. /home/pi/Wholesomebot for a raspberry pi
 
 ### Windows
 
