@@ -36,6 +36,10 @@ WholesomeBot will also respond to some messages that are sent to a channel. Thes
 - who do you love wholesomebot
 - are you an ai wholesomebot
 - you look good today wholesomebot
+- you're cute wholesomebot
+- you're beautiful wholesomebot
+- you're adorable wholesomebot
+- you're to kind wholesomebot
 
 As you can tell, having wholesomebot at the end is kinda needed, can also tag wholesomebot instead
 
