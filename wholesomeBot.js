@@ -391,8 +391,32 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		else if(/(you|u|your|you're|youre) (look|looking) (great|lovely|beautiful|amazing|cute|adorable|nice|good) (right now|atm|today|at the moment)? (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
 			bot.sendMessage({
 				to:channelID,
-			message: 'Awwwww thanks ' + user + ', you\'re too kind :blush: You\'re looking amazing as always :heart_eyes: '
+				message: 'Awwwww thanks ' + user + ', you\'re too kind :blush: You\'re looking amazing as always :heart_eyes: '
 			});
+		 }
+		 
+		 //if message is a variation of 'you're cute wholesomebot'
+		 else if(/(you are|you're|your|youre|ur|u|you) cute (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+			 bot.sendMessage({
+				 to:channelID,
+				 message: 'you\'re cuter ' + user  + ' :blush: '
+			 });
+		 }
+		 
+		 //if message is a variation of 'you're beautiful wholesomebot'
+		 else if(/(you are|you're|your|youre|ur|u|you) beautiful (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+			 bot.sendMessage({
+				 to:channelID,
+				 message: 'you\'re even more beautiful ' + user  + ' :blush: '
+			 });
+		 }
+		 
+		 //if message is a variation of 'you're adorable wholesomebot'
+		 else if(/(you are|you're|your|youre|ur|u|you) cute (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+			 bot.sendMessage({
+				 to:channelID,
+				 message: 'you\'re more adorable ' + user + ' :blush: '
+			 });
 		 }
 	 }
 });
