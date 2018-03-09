@@ -50,10 +50,6 @@ Added more pictures while the bot was running and dont want to restart the bot t
 ## Wholesome messages
 Unlike the pictures, wholesome messages are provided. There are quite a few and more are added every so often. Feel free to give suggestions to be added.
 
-## Future plans
-- Joining voice channels and playing music
-
-
 ## Setting up the bot
 First of all make sure you have made a bot account, and that ou have added it to your server.
 
@@ -64,8 +60,6 @@ Once you have done that, continue on with installing the bot on your device.
 To install the bot on linux, simply type `git clone https://github.com/basion96/WholesomeBot.git`
 To update the bot, type `git pull` in the same directory as the bot.
 In the bot.sh file, change 'path/to/Wholesomebot' to the directory you installed wholesomebot in, eg. /home/pi/Wholesomebot for a raspberry pi
-
-### Windows
 
 ## Configuring the bot
 Configuring Wholesome bot is very simple. go to the config.json file in the data folder to set the info.
