@@ -426,6 +426,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 message: 'I always try my best to be the best i can be to everyone :blush:'
 			 });
 		 }
+		 
+		 //if message is a variation of 'you're adorable wholesomebot'
+		 else if(/(will you|will u|you|u|youll|you will|you'll) love me (forever|4eva|4Eva|4 eva) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+			 bot.sendMessage({
+				 to:channelID,
+				 message: 'Forever :heart: '
+			 });
+		 }
 	 }
 });
 
