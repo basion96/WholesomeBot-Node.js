@@ -165,7 +165,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			break;
 			
 			//if command is !cheerMeUp, bot will send a message to the same channel as the command to cheer the person up.
-			case 'cheerMeUp':
+			case 'cheermeup':
 			bot.sendMessage({
 					to: channelID,
 					message: cheerUpMessages[getRandom(cheerUpMessages.length)]
@@ -268,7 +268,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	 //if message is not a distinct command.
 	 else{		 
 		 // if message is a variation of 'i love you wholesomebot'.
-		 if(/i\s+love\s+you(?!\n|\r)\s+(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+		 if(/i\s+l+o+v+e+\s+yo+u+(?!\n|\r)\s+(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			 bot.sendMessage({
 					to: channelID,
 					message: 'i love you too ' + '<@'+userID+'>'
@@ -348,7 +348,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 		 }
 		 
 		 //if message is a variation of 'do you have a crush on anyone wholesomebot'
-		 else if(/(do)? you have a crush (on anyone)? (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+		 else if(/(do)? you have a crush (on anyone)?\s*(wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
 			bot.sendMessage({
 				to:channelID,
 				message: 'I might....\n but i cant\'t tell you because its a secret :wink: '
