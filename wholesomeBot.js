@@ -492,9 +492,7 @@ function randomGoodMorningMsg(){
 	
 	//if the current time matches, a wholesome message is sent.
 	//(date=="9"){
-		var channelID = 389246174118543360;
-		var serverID = bot.channels[channelID].guild_id;
-		//var members = bot.servers[serverID].members;
+		var serverID = bot.channels[config.publicChannel].guild_id;
 		var id='';
 		
 		var members = [];
@@ -509,7 +507,7 @@ function randomGoodMorningMsg(){
 		msg = 'Good morning ' + '<@'+id+'>';
 		
 		bot.sendMessage({
-			to: channelID,//config.publicChannel,
+			to: config.publicChannel,
 			message: msg
 		});
 		lastGoodMorningMsgUser = id;
