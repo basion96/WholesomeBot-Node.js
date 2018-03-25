@@ -497,6 +497,9 @@ function randomGoodMorningMsg(){
 		var members = bot.servers[serverID].members;
 		var id = 0;
 		
+		for(key in members){
+			console.log(key+'\n');
+		}
 		//repeats while the UserID is the same as the last one (will not be able to check last if bot is turned off and back on).
 		do{
 			id = members[getRandom(members.length)];
