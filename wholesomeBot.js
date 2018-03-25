@@ -486,7 +486,7 @@ function randomGoodMorningMsg(){
 	var date = momentTZ.tz('Australia/Sydney').format('HH'); //gets current time.
 	
 	//if the current time matches, a wholesome message is sent.
-	(date=="09"){
+	if(date=="09"){
 		var serverID = bot.channels[config.publicChannel].guild_id;
 		var id='';
 		
