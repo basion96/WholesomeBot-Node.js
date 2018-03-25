@@ -437,7 +437,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 }
 			 
 			 //if message is a variation of 'do you love me wholesomebot'
-			 else if(/(will you|will u|you|u|youll|you will|you'll) love me (forever|4eva|4Eva|4 eva)/.test(message.toLowerCase())){
+			 else if(/do (you|u) love me/.test(message.toLowerCase())){
 				 if(userID==327731045653020673){//this number can be changed, this is just for the server i use that runs wholesomebot, 
 					 bot.sendMessage({
 						 to:channelID,
