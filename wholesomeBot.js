@@ -269,7 +269,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	 else{		 
 		if(/(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			// if message is a variation of 'i love you wholesomebot'.
-			 if(/i\s+l+o+v+e+\s+yo+u+(?!\n|\r)\/.test(message.toLowerCase())==true){
+			 if(/i\s+l+o+v+e+\s+yo+u+(?!\n|\r)/.test(message.toLowerCase())==true){
 				 bot.sendMessage({
 						to: channelID,
 						message: 'i love you too ' + '<@'+userID+'>'
