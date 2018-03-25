@@ -494,18 +494,17 @@ function randomGoodMorningMsg(){
 	//(date=="9"){
 		var channelID = 389246174118543360;
 		var serverID = bot.channels[channelID].guild_id;
-		var members = bot.servers[serverID].members;
+		//var members = bot.servers[serverID].members;
 		var id='';
 		
-		var memlist = [];
-		for(key in members){
+		var members = [];
+		for(key in bot.servers[serverID].members){
 			memlist.push(key);
 		}
 		//repeats while the UserID is the same as the last one (will not be able to check last if bot is turned off and back on).
 		do{
-			id = memlist[getRandom(memlist.length)];
-			console.log(id);
-		}while(id==lastGoodMorningMsgUser);
+			id = members[getRandom(members.length)];
+		}while(id==lastGoodMorningMsgUser && id!=bot.id);
 		
 		msg = 'Good morning ' + '<@'+id+'>';
 		
