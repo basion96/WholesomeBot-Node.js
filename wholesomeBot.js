@@ -435,6 +435,22 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					 message: 'Forever :heart: '
 				 });
 			 }
+			 
+			 //if message is a variation of 'do you love me wholesomebot'
+			 else if(/(will you|will u|you|u|youll|you will|you'll) love me (forever|4eva|4Eva|4 eva)/.test(message.toLowerCase())){
+				 if(userID==327731045653020673){//this number can be changed, this is just for the server i use that runs wholesomebot, 
+					 bot.sendMessage({
+						 to:channelID,
+						 message: 'I love you heaps ' + '<@'+userID+'> :kissing_heart: '
+					 });
+				 }
+				 else{
+					 bot.sendMessage({
+						 to:channelID,
+						 message: 'I love everyone, so yeah i do :blush:'
+					 });
+				 }
+			 }
 		}
 	 }
 });
