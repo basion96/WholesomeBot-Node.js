@@ -499,7 +499,7 @@ function randomGoodMorningMsg(){
 		
 		//repeats while the UserID is the same as the last one (will not be able to check last if bot is turned off and back on).
 		do{
-			id = memebers[getRandom(members.length)];
+			id = members[getRandom(members.length)];
 		}while(userID==lastGoodMorningMsgUser);
 		
 		msg = 'Good morning ' + '<@'+id+'>';
