@@ -14,6 +14,7 @@ var wholesomeMessages = [],
 	compliments = [];
 	
 var lastWholesomeMsg='';
+var lastGoodMorningMsgUser=0;
 
 // Initialize Discord Bot.
 var bot = new Discord.Client({
@@ -65,6 +66,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
        
         args = args.splice(1);
         switch(cmd) {
+			
+			case 'test':
+				randomGoodMorningMsg();
+			break;
+			
 			
 			//if command is !help
 			case 'help':
@@ -481,8 +487,35 @@ function dailyWholesomeMsg(){
 	}
 }
 
+function randomGoodMorningMsg(){
+	var date = momentTZ.tz('Australia/Sydney').format('HH'); //gets current time.
+	
+	//if the current time matches, a wholesome message is sent.
+	//(date=="9"){
+		var serverID = bot.channels[channelID].guild_id;
+		var members = bot.servers[serverID].members;
+		var id = 0;
+		
+		//repeats while the UserID is the same as the last one (will not be able to check last if bot is turned off and back on).
+		do{
+			id = memebers[getRandom(members.length)];
+		}while(userID==lastGoodMorningMsgUser);
+		
+		msg = 'Good morning ' + '<@'+id+'>';
+		
+		bot.sendMessage({
+			to: 389246174118543360,//config.publicChannel,
+			message: msg
+		});
+		lastGoodMorningMsgUser = id;
+	//}
+}
+
 // runs dailyWholesomeMsg() every hour
 setInterval(dailyWholesomeMsg, 3600000);
+
+//runs randomGoodMorningMsg() every hour
+setInterval(randomGoodMorningMsg, 3600000)
 
 //fills all the arrays with corresponding data.
 function fillArrays(){
