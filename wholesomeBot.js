@@ -14,7 +14,7 @@ var wholesomeMessages = [],
 	compliments = [];
 	
 var lastWholesomeMsg='';
-var lastGoodMorningMsgUser=0;
+var lastGoodMorningMsgUser='';
 
 // Initialize Discord Bot.
 var bot = new Discord.Client({
@@ -495,14 +495,14 @@ function randomGoodMorningMsg(){
 		var channelID = 389246174118543360;
 		var serverID = bot.channels[channelID].guild_id;
 		var members = bot.servers[serverID].members;
-		var id;
+		var id='';
 		
 		for(key in members){
 			console.log(key+'\n');
 		}
 		//repeats while the UserID is the same as the last one (will not be able to check last if bot is turned off and back on).
 		do{
-			id = members[getRandom(members.length)].id;
+			id = members[getRandom(members.length)];
 		}while(id==lastGoodMorningMsgUser);
 		
 		msg = 'Good morning ' + '<@'+id+'>';
