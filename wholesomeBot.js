@@ -495,7 +495,7 @@ function randomGoodMorningMsg(){
 		var channelID = 389246174118543360;
 		var serverID = bot.channels[channelID].guild_id;
 		var members = bot.servers[serverID].members;
-		var id = 0;
+		var id;
 		
 		for(key in members){
 			console.log(key+'\n');
