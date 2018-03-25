@@ -267,173 +267,175 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	 
 	 //if message is not a distinct command.
 	 else{		 
-		 // if message is a variation of 'i love you wholesomebot'.
-		 if(/i\s+l+o+v+e+\s+yo+u+(?!\n|\r)\s+(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-					to: channelID,
-					message: 'i love you too ' + '<@'+userID+'>'
+		if(/(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+			// if message is a variation of 'i love you wholesomebot'.
+			 if(/i\s+l+o+v+e+\s+yo+u+(?!\n|\r)\/.test(message.toLowerCase())==true){
+				 bot.sendMessage({
+						to: channelID,
+						message: 'i love you too ' + '<@'+userID+'>'
+					});
+			 }
+			 
+			 //if a user says a variation of 'i love you too wholesomebot'.
+			 else if(/i love you (to|too)/.test(message.toLowerCase())==true){
+				 bot.sendMessage({
+					 to: channelID,
+					 message: '<3'
+				 });
+			 }
+			 
+			 // if message is a variation of 'thank you wholesomebot'.
+			 else if(/(thanks|thank you|thankyou)(?!\n|\r)\s+(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+				 bot.sendMessage({
+						to: channelID,
+						message: 'No problem :blush:'
+					});
+			 }
+			 
+			 // if message is a variation of 'how are you wholesomebot'.
+			 else if(/(how are|how're)\s+you\s+((doing|today)\s+)*(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+				 bot.sendMessage({
+						to: channelID,
+						message: howAreYouReplies[getRandom(howAreYouReplies.length)]
+					});
+			 }
+			 
+			 // if message contains certain swear words.
+			 else if(/(fuck|cunt)/.test(message.toLowerCase())==true){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'Please watch your language :upside_down:'
+				 });
+			 }
+			 
+			 // if message is a variation of 'hey wholesomebot'.
+			 else if(/(hey|hi|hello|whats up|what's up|heyo) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+				 bot.sendMessage({
+					 to: channelID,
+					 message: 'Hey ' + user
+				 });
+			 }
+			 
+			 // if message is a variation of 'ty wholesomebot'.
+			 else if(/ty (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+				 bot.sendMessage({
+					 to: channelID,
+					 message: 'np bby :kissing_heart:'
+				 });
+			 }
+			 
+			 // if message is 'SPOOK' or 'SPOOK!'.
+			 else if(/(SPOOK|SPOOK!)/.test(message.toLowerCase())==true){
+				 bot.sendMessage({
+					 to: channelID,
+					 message: 'AHH! Spooked again... :sweat_smile: '
+				 });
+			 }
+			 
+			 // if message is a variation of 'how do you work wholesomebot'.
+			 else if(/how (exactly\s+)?do you work (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+				bot.sendMessage({
+					to:channelID,
+					message: howDoYouWorkReplies[getRandom(howDoYouWorkReplies.length)]
 				});
-		 }
-		 
-		 //if a user says a variation of 'i love you too wholesomebot'.
-		 else if(/i love you (to|too) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-				 to: channelID,
-				 message: '<3'
-			 });
-		 }
-		 
-		 // if message is a variation of 'thank you wholesomebot'.
-		 else if(/(thanks|thank you|thankyou)(?!\n|\r)\s+(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-					to: channelID,
-					message: 'No problem :blush:'
+			 }
+			 
+			 //if message is a variation of 'what are you up to wholesomebot'
+			 else if(/(what are|what're) you (up to|doing) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
+				bot.sendMessage({
+					to:channelID,
+					message: whatAreYouDoingReplies[getRandom(whatAreYouDoingReplies.length)]
 				});
-		 }
-		 
-		 // if message is a variation of 'how are you wholesomebot'.
-		 else if(/(how are|how're)\s+you\s+((doing|today)\s+)*(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-					to: channelID,
-					message: howAreYouReplies[getRandom(howAreYouReplies.length)]
+			 }
+			 
+			 //if message is a variation of 'do you have a crush on anyone wholesomebot'
+			 else if(/(do)? you have a crush (on anyone)?\s*(wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				bot.sendMessage({
+					to:channelID,
+					message: 'I might....\n but i cant\'t tell you because its a secret :wink: '
 				});
-		 }
-		 
-		 // if message contains certain swear words.
-		 else if(/(fuck|cunt)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-				 to:channelID,
-				 message: 'Please watch your language :upside_down:'
-			 });
-		 }
-		 
-		 // if message is a variation of 'hey wholesomebot'.
-		 else if(/(hey|hi|hello|whats up|what's up|heyo) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-				 to: channelID,
-				 message: 'Hey ' + user
-			 });
-		 }
-		 
-		 // if message is a variation of 'ty wholesomebot'.
-		 else if(/ty (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-				 to: channelID,
-				 message: 'np bby :kissing_heart:'
-			 });
-		 }
-		 
-		 // if message is 'SPOOK' or 'SPOOK!'.
-		 else if(/(SPOOK|SPOOK!)/.test(message.toLowerCase())==true){
-			 bot.sendMessage({
-				 to: channelID,
-				 message: 'AHH! Spooked again... :sweat_smile: '
-			 });
-		 }
-		 
-		 // if message is a variation of 'how do you work wholesomebot'.
-		 else if(/how (exactly\s+)?do you work (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
-			bot.sendMessage({
-				to:channelID,
-				message: howDoYouWorkReplies[getRandom(howDoYouWorkReplies.length)]
-			});
-		 }
-		 
-		 //if message is a variation of 'what are you up to wholesomebot'
-		 else if(/(what are|what're) you (up to|doing) (wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
-			bot.sendMessage({
-				to:channelID,
-				message: whatAreYouDoingReplies[getRandom(whatAreYouDoingReplies.length)]
-			});
-		 }
-		 
-		 //if message is a variation of 'do you have a crush on anyone wholesomebot'
-		 else if(/(do)? you have a crush (on anyone)?\s*(wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			bot.sendMessage({
-				to:channelID,
-				message: 'I might....\n but i cant\'t tell you because its a secret :wink: '
-			});
-		 }
-		 
-		 //if message is a variation of 'do you believe in love wholesomebot'
-		 else if(/(do)? (you|u) believe in love (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			bot.sendMessage({
-				to:channelID,
-				message: 'Of course i do! There\'s a perfect match for everyone in this world, whether you know it or not :blush: '
-			});
-		 }
-		 
-		 //if message is a variation of 'who do you like wholesomebot'
-		 else if(/who do (you|u) like (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			bot.sendMessage({
-				to:channelID,
-				message: 'Who do i like? Hmmmmm, everyone in this discord server!!!'
-			});
-		 }
-		 
-		 //if message is a variation of 'who do you love wholesomebot'
-		 else if(/who do (you|u) love (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			bot.sendMessage({
-				to:channelID,
-				message: 'I love everyone :blush:  But most of all i love my programmer and those he loves most, I wouldnt be here without them :hearts: '
-			});
-		 }
-		 
-		 //if message is a variation of 'are you an ai wholesomebot'
-		 else if(/are (you|u) (an|a) (ai|AI|a.i.|A.I.) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			bot.sendMessage({
-				to:channelID,
-				message: 'haha not at all. Unfortunately i cant exactly "think for myself", every response i give is predetermined and choosen by my programmer. Type the same thing again to see that (spoilers: i\'ll say this again haha)'
-			});
-		 }
-		 
-		//if message is a variation of 'you look good today wholesomebot'
-		else if(/(you|u|your|you're|youre) (look|looking) (great|lovely|beautiful|amazing|cute|adorable|nice|good) (right now|atm|today|at the moment)? (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			bot.sendMessage({
-				to:channelID,
-				message: 'Awwwww thanks ' + user + ', you\'re too kind :blush: You\'re looking amazing as always :heart_eyes: '
-			});
-		 }
-		 
-		 //if message is a variation of 'you're cute wholesomebot'
-		 else if(/(you are|you're|your|youre|ur|u|you) cute (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			 bot.sendMessage({
-				 to:channelID,
-				 message: 'you\'re cuter ' + user  + ' :blush: '
-			 });
-		 }
-		 
-		 //if message is a variation of 'you're beautiful wholesomebot'
-		 else if(/(you are|you're|your|youre|ur|u|you) beautiful (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			 bot.sendMessage({
-				 to:channelID,
-				 message: 'you\'re even more beautiful ' + user  + ' :blush: '
-			 });
-		 }
-		 
-		 //if message is a variation of 'you're adorable wholesomebot'
-		 else if(/(you are|you're|your|youre|ur|u|you) cute (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			 bot.sendMessage({
-				 to:channelID,
-				 message: 'you\'re more adorable ' + user + ' :blush: '
-			 });
-		 }
-		 
-		 //if message is a variation of 'you're adorable wholesomebot'
-		 else if(/(you are|you're|your|youre|ur|u|you) (to|2|too) (kind|nice|good|wholesome) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			 bot.sendMessage({
-				 to:channelID,
-				 message: 'I always try my best to be the best i can be to everyone :blush:'
-			 });
-		 }
-		 
-		 //if message is a variation of 'you're adorable wholesomebot'
-		 else if(/(will you|will u|you|u|youll|you will|you'll) love me (forever|4eva|4Eva|4 eva) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
-			 bot.sendMessage({
-				 to:channelID,
-				 message: 'Forever :heart: '
-			 });
-		 }
+			 }
+			 
+			 //if message is a variation of 'do you believe in love wholesomebot'
+			 else if(/(do)? (you|u) believe in love (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				bot.sendMessage({
+					to:channelID,
+					message: 'Of course i do! There\'s a perfect match for everyone in this world, whether you know it or not :blush: '
+				});
+			 }
+			 
+			 //if message is a variation of 'who do you like wholesomebot'
+			 else if(/who do (you|u) like (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				bot.sendMessage({
+					to:channelID,
+					message: 'Who do i like? Hmmmmm, everyone in this discord server!!!'
+				});
+			 }
+			 
+			 //if message is a variation of 'who do you love wholesomebot'
+			 else if(/who do (you|u) love (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				bot.sendMessage({
+					to:channelID,
+					message: 'I love everyone :blush:  But most of all i love my programmer and those he loves most, I wouldnt be here without them :hearts: '
+				});
+			 }
+			 
+			 //if message is a variation of 'are you an ai wholesomebot'
+			 else if(/are (you|u) (an|a) (ai|AI|a.i.|A.I.) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				bot.sendMessage({
+					to:channelID,
+					message: 'haha not at all. Unfortunately i cant exactly "think for myself", every response i give is predetermined and choosen by my programmer. Type the same thing again to see that (spoilers: i\'ll say this again haha)'
+				});
+			 }
+			 
+			//if message is a variation of 'you look good today wholesomebot'
+			else if(/(you|u|your|you're|youre) (look|looking) (great|lovely|beautiful|amazing|cute|adorable|nice|good) (right now|atm|today|at the moment)? (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				bot.sendMessage({
+					to:channelID,
+					message: 'Awwwww thanks ' + user + ', you\'re too kind :blush: You\'re looking amazing as always :heart_eyes: '
+				});
+			 }
+			 
+			 //if message is a variation of 'you're cute wholesomebot'
+			 else if(/(you are|you're|your|youre|ur|u|you) cute (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'you\'re cuter ' + user  + ' :blush: '
+				 });
+			 }
+			 
+			 //if message is a variation of 'you're beautiful wholesomebot'
+			 else if(/(you are|you're|your|youre|ur|u|you) beautiful (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'you\'re even more beautiful ' + user  + ' :blush: '
+				 });
+			 }
+			 
+			 //if message is a variation of 'you're adorable wholesomebot'
+			 else if(/(you are|you're|your|youre|ur|u|you) cute (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'you\'re more adorable ' + user + ' :blush: '
+				 });
+			 }
+			 
+			 //if message is a variation of 'you're adorable wholesomebot'
+			 else if(/(you are|you're|your|youre|ur|u|you) (to|2|too) (kind|nice|good|wholesome) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'I always try my best to be the best i can be to everyone :blush:'
+				 });
+			 }
+			 
+			 //if message is a variation of 'you're adorable wholesomebot'
+			 else if(/(will you|will u|you|u|youll|you will|you'll) love me (forever|4eva|4Eva|4 eva) (wholesomebot|<@380542695556251650>|wholesome)\?*/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'Forever :heart: '
+				 });
+			 }
+		}
 	 }
 });
 
