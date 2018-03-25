@@ -67,11 +67,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         args = args.splice(1);
         switch(cmd) {
 			
-			case 'test':
-				randomGoodMorningMsg();
-			break;
-			
-			
 			//if command is !help
 			case 'help':
 				bot.sendMessage({
@@ -491,7 +486,8 @@ function randomGoodMorningMsg(){
 	var date = momentTZ.tz('Australia/Sydney').format('HH'); //gets current time.
 	
 	//if the current time matches, a wholesome message is sent.
-	//(date=="9"){
+	(date=="9" || date=="09"){
+		console.log(date);
 		var serverID = bot.channels[config.publicChannel].guild_id;
 		var id='';
 		
@@ -511,7 +507,7 @@ function randomGoodMorningMsg(){
 			message: msg
 		});
 		lastGoodMorningMsgUser = id;
-	//}
+	}
 }
 
 // runs dailyWholesomeMsg() every hour
