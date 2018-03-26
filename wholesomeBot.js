@@ -437,6 +437,22 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 });
 			 }
 			 
+			 //if replying to good morning message
+			 else if(/good? (morning|mornin) && userID==lastGoodMorningMsgUser/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: ''
+				 });
+			 }
+			 
+			 //if saying good morning
+			 else if(/good? (morning|mornin)/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'Good morning'
+				 });
+			 }
+			 
 			 //if message is a variation of 'do you love me wholesomebot'
 			 else if(/do (you|u) love me/.test(message.toLowerCase())){
 				 if(userID==327731045653020673){//this number can be changed, this is just for the server i use that runs wholesomebot, 
@@ -499,7 +515,7 @@ function randomGoodMorningMsg(){
 			id = members[getRandom(members.length)];
 		}while(id==lastGoodMorningMsgUser && id!=bot.id);
 		
-		msg = 'Good morning ' + '<@'+id+'>';
+		msg = 'Good morning ' + '<@'+id+'>, have a great day today :blush: ';
 		
 		bot.sendMessage({
 			to: config.publicChannel,
