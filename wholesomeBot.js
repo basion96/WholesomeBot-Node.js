@@ -438,7 +438,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 }
 			 
 			 //if saying good morning
-			 else if(/good? (morning|mornin)/.test(message.toLowerCase()) && userID!=lastGoodMorningMsgUser){
+			 else if(/(good)? (morning|mornin)/.test(message.toLowerCase()) && userID!=lastGoodMorningMsgUser){
 				 bot.sendMessage({
 					 to:channelID,
 					 message: 'Good morning :blush: How was your sleep?' 
@@ -446,7 +446,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 }
 			 
 			 //if saying good afternoon
-			 else if(/good? (evening|afternoon)/.test(message.toLowerCase())){
+			 else if(/(good)? (evening|afternoon)/.test(message.toLowerCase())){
 				 bot.sendMessage({
 					 to:channelID,
 					 message: 'Good afternooon ' + user + ' :blush: How was your day today?'
