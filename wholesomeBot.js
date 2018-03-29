@@ -461,6 +461,22 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 });
 			 }
 			 
+			 //if asking who is wholesomebots favourite person
+			 else if(/who is (your|ur) (fav|favorite|favourite) (peep|person|human|friend)/.test(message.toLowerCase())){
+				 if(userID==327731045653020673){//this number can be changed, this is just for the server i use that runs wholesomebot, 
+					 bot.sendMessage({
+						 to:userID,
+						 message: 'You\'re my favourite person :blush: :kissing_heart: '
+					 });
+				 }
+				 else{
+					 bot.sendMessage({
+						 to:userID,
+						 message: 'I don\'t tend to have favourites, i love everyone equally :blush: (ok maybe my programmer is my favourite, but i guess its obvious why :yum: )'
+					 });
+				 }
+			 }
+			 
 			 //if message is a variation of 'do you love me wholesomebot'
 			 else if(/do (you|u) love me/.test(message.toLowerCase())){
 				 if(userID==327731045653020673){//this number can be changed, this is just for the server i use that runs wholesomebot, 
