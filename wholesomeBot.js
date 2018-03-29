@@ -444,11 +444,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					 message: 'Good morning :blush: How was your sleep?' 
 				 });
 			 }
+			 
 			 //if saying good afternoon
 			 else if(/good? (evening|afternoon)/.test(message.toLowerCase())){
 				 bot.sendMessage({
 					 to:channelID,
 					 message: 'Good afternooon ' + user + ' :blush: How was your day today?'
+				 });
+			 }
+			 
+			 //if asking how wholesomebot slept
+			 else if(/how (did|was) (you|u|your|ur) sleep/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'I was awake all night again :confused: Tha\'s the annoying thing about being a computer, You don\'t tend to get much sleep. Thanks for asking though :blush: '
 				 });
 			 }
 			 
