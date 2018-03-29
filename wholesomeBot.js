@@ -295,6 +295,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 
 			 // if message is a variation of 'how are you wholesomebot'.
 			 else if(/(how are|how're)\s+you\s+(doing|today)*/.test(message.toLowerCase())==true){
+				 console.log("LOG: hit");
 				 bot.sendMessage({
 						to: channelID,
 						message: howAreYouReplies[getRandom(howAreYouReplies.length)]
