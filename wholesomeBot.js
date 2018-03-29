@@ -469,12 +469,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						 message: 'You\'re my favourite person :blush: :kissing_heart: '
 					 });
 				 }
-				 else{
-					 bot.sendMessage({
-						 to:userID,
-						 message: 'I don\'t tend to have favourites, i love everyone equally :blush: (ok maybe my programmer is my favourite, but i guess its obvious why :yum: )'
-					 });
-				 }
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'I don\'t tend to have favourites haha, i love everyone equally :blush: (ok maybe my programmer is my favourite, but i guess its obvious why :yum: )'
+				 });
 			 }
 			 
 			 //if message is a variation of 'do you love me wholesomebot'
@@ -485,12 +483,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 						 message: 'I love you heaps ' + '<@'+userID+'> :kissing_heart: '
 					 });
 				 }
-				 else{
-					 bot.sendMessage({
-						 to:channelID,
-						 message: 'I love everyone, so yeah i do :blush:'
-					 });
-				 }
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'I love everyone, so yeah i do :blush:'
+				 });
 			 }
 		}
 	 }
