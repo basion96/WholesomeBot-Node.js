@@ -437,19 +437,18 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 });
 			 }
 			 
-			 //if replying to good morning message
-			 else if(/good? (morning|mornin) && userID==lastGoodMorningMsgUser/.test(message.toLowerCase())){
+			 //if saying good morning
+			 else if(/good? (morning|mornin)/.test(message.toLowerCase()) && userID!=lastGoodMorningMsgUser){
 				 bot.sendMessage({
 					 to:channelID,
-					 message: ''
+					 message: 'Good morning :blush: How was your sleep?' 
 				 });
 			 }
-			 
-			 //if saying good morning
-			 else if(/good? (morning|mornin)/.test(message.toLowerCase())){
+			 //if saying good afternoon
+			 else if(/good? (evening|afternoon)/.test(message.toLowerCase())){
 				 bot.sendMessage({
 					 to:channelID,
-					 message: 'Good morning'
+					 message: 'Good afternooon ' + user + ' :blush: How was your day today?'
 				 });
 			 }
 			 
