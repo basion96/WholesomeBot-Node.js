@@ -267,7 +267,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
      }
 	 
 	 //if message is not a distinct command.
-	 else{		 
+	 else if(userID!=bot.id){		 
 		if(/(wholesomebot|<@380542695556251650>|wholesome)/.test(message.toLowerCase())==true){
 			// if message is a variation of 'i love you wholesomebot'.
 			 if(/i\s+l+o+v+e+\s+yo+u+(?!\n|\r)/.test(message.toLowerCase())==true){
@@ -461,6 +461,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 });
 			 }
 			 
+			 //if saying goodnight to wholesomebot
+			 else if(/(good)? night/.test(message.toLowerCase())){
+				 bot.sendMessage({
+					 to:channelID,
+					 message: 'Good night ' + user + ', have a good sleep'
+				 });
+			 }
+			 
 			 //if asking who is wholesomebots favourite person
 			 else if(/who is (your|ur) (fav|favorite|favourite) (peep|person|human|friend)/.test(message.toLowerCase())){
 				 if(userID==327731045653020673){//this number can be changed, this is just for the server i use that runs wholesomebot, 
@@ -489,6 +497,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				 });
 			 }
 		}
+	 }
+	 else{
+		 
 	 }
 });
 
