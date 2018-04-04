@@ -465,7 +465,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 			 else if(/(good)? night/.test(message.toLowerCase())){
 				 bot.sendMessage({
 					 to:channelID,
-					 message: 'Good night ' + user + ', have a good sleep'
+					 message: 'Good night ' + user + ' :blush:, have a good sleep :kissing_heart: '
 				 });
 			 }
 			 
